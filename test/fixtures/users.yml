@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  alias: MyString
+  college: MyString
+  is_active: false
+  is_admin: false
+
+two:
+  name: MyString
+  alias: MyString
+  college: MyString
+  is_active: false
+  is_admin: false

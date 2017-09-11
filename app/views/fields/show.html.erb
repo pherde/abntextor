@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @field.name %>
+</p>
+
+<p>
+  <strong>Label:</strong>
+  <%= @field.label %>
+</p>
+
+<p>
+  <strong>Open tag:</strong>
+  <%= @field.open_tag %>
+</p>
+
+<p>
+  <strong>Close tag:</strong>
+  <%= @field.close_tag %>
+</p>
+
+<p>
+  <strong>Position:</strong>
+  <%= @field.position %>
+</p>
+
+<p>
+  <strong>Section:</strong>
+  <%= @field.section %>
+</p>
+
+<%= link_to 'Edit', edit_field_path(@field) %> |
+<%= link_to 'Back', fields_path %>

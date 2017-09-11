@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>App</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  	<nav>
+  		<a href="/users">Users</a><br />
+  		<a href="/papers">Papers</a><br />
+  		<a href="/templates">Templates</a><br />
+  		<a href="/sections">Sections</a><br />
+  		<a href="/fields">Fields</a><br />
+  		
+  	</nav>
+    <%= yield %>
+  </body>
+</html>

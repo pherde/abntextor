@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  label: MyString
+  open_tag: MyString
+  close_tag: MyString
+  position: 1
+  section: one
+
+two:
+  name: MyString
+  label: MyString
+  open_tag: MyString
+  close_tag: MyString
+  position: 1
+  section: two

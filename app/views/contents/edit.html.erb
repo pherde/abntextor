@@ -1,0 +1,22 @@
+<h1>Contents#edit</h1>
+<p>Find me in app/views/contents/edit.html.erb</p>
+
+
+<%= @contents.inspect %>
+
+<%= form_tag(controller: "contents", action: "update", method: "post") do %>
+  <% @contents.each do |content| %>
+	  <div class="field">
+	  	<%= text_field_tag("paper_id[]", "#{content.paper.id}", :multiple => true) %>
+	  	<%= text_field_tag("field_id[]", "#{content.field.id}", :multiple => true) %>
+	  	<%= label_tag("#{content.field.id}", "#{content.field.label}") %>
+
+		<%= text_field_tag("content[]", "#{content.content}", :multiple => true) %>
+	  </div>
+  <% end %>
+
+
+  <div class="actions">
+    <%= submit_tag("Update") %>
+  </div>
+<% end %>

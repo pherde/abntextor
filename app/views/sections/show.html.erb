@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @section.name %>
+</p>
+
+<p>
+  <strong>Template:</strong>
+  <%= @section.template %>
+</p>
+
+<p>
+  <strong>Is editable:</strong>
+  <%= @section.is_editable %>
+</p>
+
+<p>
+  <strong>Is wysiwyg:</strong>
+  <%= @section.is_wysiwyg %>
+</p>
+
+<p>
+  <strong>Position:</strong>
+  <%= @section.position %>
+</p>
+
+<%= link_to 'Edit', edit_section_path(@section) %> |
+<%= link_to 'Back', sections_path %>
