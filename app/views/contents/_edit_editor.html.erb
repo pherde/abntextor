@@ -1,0 +1,8 @@
+ <h1>Colocar o editor aqui</h1>
+  <div class="field">
+ 	<%= text_field_tag("paper_id[]", "#{content.paper.id}", :multiple => true) %>
+  	<%= text_field_tag("field_id[]", "#{content.field.id}", :multiple => true) %>
+  	<%= label_tag("#{content.field.id}", "#{content.field.label}") %>
+
+	<%= text_field_tag("content[]", "#{content.content}", :multiple => true) %>
+  </div>

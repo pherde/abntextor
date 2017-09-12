@@ -6,13 +6,11 @@
 
 <%= form_tag(controller: "contents", action: "update", method: "post") do %>
   <% @contents.each do |content| %>
-	  <div class="field">
-	  	<%= text_field_tag("paper_id[]", "#{content.paper.id}", :multiple => true) %>
-	  	<%= text_field_tag("field_id[]", "#{content.field.id}", :multiple => true) %>
-	  	<%= label_tag("#{content.field.id}", "#{content.field.label}") %>
-
-		<%= text_field_tag("content[]", "#{content.content}", :multiple => true) %>
-	  </div>
+	<% if content.field.section.is_wysiwyg %>
+		<%= render "edit_editor", content: content %>
+ 	<% else %>
+		<%= render "edit_fields", content: content %>
+	<% end %>
   <% end %>
 
 
