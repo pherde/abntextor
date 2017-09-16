@@ -4,5 +4,6 @@
   	<%= text_field_tag("field_id[]", "#{content.field.id}", :multiple => true) %>
   	<%= label_tag("#{content.field.id}", "#{content.field.label}") %>
 
-	<%= text_area_tag("content[]", "#{content.content}", :multiple => true) %>
+	<%= text_area_tag("content[]", "#{content.content}", :class => "tinymce", :rows => 30, :multiple => true) %>
+	<%= tinymce %>
   </div>

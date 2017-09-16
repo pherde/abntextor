@@ -32,6 +32,10 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# Use TinyMCE to standart text editor
+# See more in https://github.com/spohlenz/tinymce-rails
+gem 'tinymce-rails'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
