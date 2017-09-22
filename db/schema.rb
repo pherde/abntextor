@@ -37,13 +37,13 @@ ActiveRecord::Schema.define(version: 20170820152433) do
 
   create_table "papers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.string   "hash"
+    t.string   "hash_name"
     t.integer  "template_id"
     t.integer  "user_id"
     t.datetime "last_build"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["hash"], name: "index_papers_on_hash", unique: true, using: :btree
+    t.index ["hash_name"], name: "index_papers_on_hash_name", unique: true, using: :btree
     t.index ["template_id"], name: "index_papers_on_template_id", using: :btree
     t.index ["user_id"], name: "index_papers_on_user_id", using: :btree
   end
