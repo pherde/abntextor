@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root "papers#index"
+  
   get "/contents/:paper_id/:section_id", to: "contents#edit"
   get 'contents/edit'
   post 'contents/update'

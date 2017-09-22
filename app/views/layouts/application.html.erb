@@ -6,17 +6,24 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
   </head>
 
   <body>
-  	<nav>
-  		<a href="/users">Users</a><br />
-  		<a href="/papers">Papers</a><br />
-  		<a href="/templates">Templates</a><br />
-  		<a href="/sections">Sections</a><br />
-  		<a href="/fields">Fields</a><br />
-  		
-  	</nav>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo">Logo</a>
+      <ul id="nav-mobile" class="right">
+        <li><a href="/users">Users</a><br /></li>
+        <li><a href="/papers">Papers</a></li>
+        <li><a href="/templates">Templates</a></li>
+        <li><a href="/sections">Sections</a></li>
+        <li><a href="/fields">Fields</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  	
     <%= yield %>
   </body>
 </html>

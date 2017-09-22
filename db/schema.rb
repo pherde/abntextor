@@ -27,19 +27,23 @@ ActiveRecord::Schema.define(version: 20170820152433) do
     t.string   "label"
     t.string   "open_tag"
     t.string   "close_tag"
+    t.boolean  "is_multivalue"
     t.integer  "position"
     t.integer  "section_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.index ["section_id"], name: "index_fields_on_section_id", using: :btree
   end
 
   create_table "papers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
+    t.string   "hash"
     t.integer  "template_id"
     t.integer  "user_id"
+    t.datetime "last_build"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.index ["hash"], name: "index_papers_on_hash", unique: true, using: :btree
     t.index ["template_id"], name: "index_papers_on_template_id", using: :btree
     t.index ["user_id"], name: "index_papers_on_user_id", using: :btree
   end
