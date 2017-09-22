@@ -36,6 +36,9 @@ gem 'jbuilder', '~> 2.5'
 # See more in https://github.com/spohlenz/tinymce-rails
 gem 'tinymce-rails'
 
+# HTML2Latex 
+gem 'html2latex', :path => "/vagrant/html2latex"
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

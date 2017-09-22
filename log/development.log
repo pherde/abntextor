@@ -7445,3 +7445,493 @@ FOREIGN KEY (`field_id`)
   [1m[35m (0.2ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'templates'[0m
   [1m[35m (0.1ms)[0m  [1m[35mSHOW CREATE TABLE `users`[0m
   [1m[35m (0.2ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'users'[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (100.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS `abntex_development`[0m
+  [1m[35m (2.5ms)[0m  [1m[35mDROP DATABASE IF EXISTS `abntex_test`[0m
+  [1m[35m (46.0ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) PRIMARY KEY) ENGINE=InnoDB[0m
+  [1m[35m (10.2ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) PRIMARY KEY, `value` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT DATABASE() as db[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT GET_LOCK('2775444742128972480', 0);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreateUsers (20170820152102)
+  [1m[35m (13.1ms)[0m  [1m[35mCREATE TABLE `users` (`id` int AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `alias` varchar(255), `college` varchar(255), `is_active` tinyint(1), `is_admin` tinyint(1), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20170820152102')[0m
+  [1m[35m (9.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTemplates (20170820152123)
+  [1m[35m (11.7ms)[0m  [1m[35mCREATE TABLE `templates` (`id` int AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `description` varchar(255), `is_active` tinyint(1), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.6ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20170820152123')[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreatePapers (20170820152146)
+  [1m[35m (14.1ms)[0m  [1m[35mCREATE TABLE `papers` (`id` int AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `hash` varchar(255), `template_id` int, `user_id` int, `last_build` datetime, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_papers_on_template_id`  (`template_id`),  INDEX `index_papers_on_user_id`  (`user_id`), CONSTRAINT `fk_rails_4148a72140`
+FOREIGN KEY (`template_id`)
+  REFERENCES `templates` (`id`)
+, CONSTRAINT `fk_rails_9adcc8c446`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+) ENGINE=InnoDB[0m
+  [1m[35m (10.7ms)[0m  [1m[35mCREATE UNIQUE INDEX `index_papers_on_hash`  ON `papers` (`hash`) [0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20170820152146')[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateSections (20170820152233)
+  [1m[35m (13.9ms)[0m  [1m[35mCREATE TABLE `sections` (`id` int AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `template_id` int, `is_editable` tinyint(1), `is_wysiwyg` tinyint(1), `position` int, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_sections_on_template_id`  (`template_id`), CONSTRAINT `fk_rails_b05f240884`
+FOREIGN KEY (`template_id`)
+  REFERENCES `templates` (`id`)
+) ENGINE=InnoDB[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20170820152233')[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateFields (20170820152349)
+  [1m[35m (13.8ms)[0m  [1m[35mCREATE TABLE `fields` (`id` int AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `label` varchar(255), `open_tag` varchar(255), `close_tag` varchar(255), `is_multivalue` tinyint(1), `position` int, `section_id` int, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_fields_on_section_id`  (`section_id`), CONSTRAINT `fk_rails_fb23c35574`
+FOREIGN KEY (`section_id`)
+  REFERENCES `sections` (`id`)
+) ENGINE=InnoDB[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20170820152349')[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateContents (20170820152433)
+  [1m[35m (63.3ms)[0m  [1m[35mCREATE TABLE `contents` (`id` int AUTO_INCREMENT PRIMARY KEY, `paper_id` int, `field_id` int, `content` text, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_contents_on_paper_id`  (`paper_id`),  INDEX `index_contents_on_field_id`  (`field_id`), CONSTRAINT `fk_rails_5dc75ba26d`
+FOREIGN KEY (`paper_id`)
+  REFERENCES `papers` (`id`)
+, CONSTRAINT `fk_rails_bca35347a0`
+FOREIGN KEY (`field_id`)
+  REFERENCES `fields` (`id`)
+) ENGINE=InnoDB[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20170820152433')[0m
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2017-09-22 22:40:10', '2017-09-22 22:40:10')[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT RELEASE_LOCK('2775444742128972480')[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSHOW CREATE TABLE `contents`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'contents'[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSHOW CREATE TABLE `fields`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'fields'[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSHOW CREATE TABLE `papers`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'papers'[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSHOW CREATE TABLE `sections`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'sections'[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSHOW CREATE TABLE `templates`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'templates'[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSHOW CREATE TABLE `users`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'users'[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `users` (`name`, `alias`, `is_active`, `is_admin`, `created_at`, `updated_at`) VALUES ('Alysson', 'nu12', 1, 1, '2017-09-22 22:40:19', '2017-09-22 22:40:19')[0m
+  [1m[35m (25.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO `templates` (`name`, `description`, `created_at`, `updated_at`) VALUES ('Blank', '1', '2017-09-22 22:40:19', '2017-09-22 22:40:19')[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `sections` (`name`, `template_id`, `is_editable`, `is_wysiwyg`, `created_at`, `updated_at`) VALUES ('Content', 1, 1, 1, '2017-09-22 22:40:19', '2017-09-22 22:40:19')[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `fields` (`name`, `label`, `open_tag`, `close_tag`, `section_id`, `created_at`, `updated_at`) VALUES ('Content', 'Content', 'documentclass{article}egin{document}', 'nd{document}', 1, '2017-09-22 22:40:19', '2017-09-22 22:40:19')[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/" for 10.0.2.2 at 2017-09-22 22:43:42 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by PapersController#index as HTML
+  Rendering papers/index.html.erb within layouts/application
+  [1m[36mPaper Load (0.3ms)[0m  [1m[34mSELECT `papers`.* FROM `papers`[0m
+  Rendered papers/index.html.erb within layouts/application (10.0ms)
+Completed 200 OK in 9084ms (Views: 9040.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/papers/new" for 10.0.2.2 at 2017-09-22 22:44:00 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by PapersController#new as HTML
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.9ms)
+
+
+  
+ActiveRecord::DangerousAttributeError (hash is defined by Active Record. Check to make sure that you don't have an attribute or method with the same name.):
+  
+app/controllers/papers_controller.rb:17:in `new'
+  Rendering /home/vagrant/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/vagrant/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.5/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/vagrant/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.5/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (3.8ms)
+  Rendering /home/vagrant/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/vagrant/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendering /home/vagrant/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/vagrant/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /home/vagrant/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (24.8ms)
+Started GET "/" for 10.0.2.2 at 2017-09-22 22:44:15 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by PapersController#index as HTML
+  Rendering papers/index.html.erb within layouts/application
+  [1m[36mPaper Load (0.3ms)[0m  [1m[34mSELECT `papers`.* FROM `papers`[0m
+  Rendered papers/index.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 335ms (Views: 321.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users" for 10.0.2.2 at 2017-09-22 22:44:22 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  Rendered users/index.html.erb within layouts/application (10.7ms)
+Completed 200 OK in 321ms (Views: 298.7ms | ActiveRecord: 1.5ms)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (29.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS `abntex_development`[0m
+  [1m[35m (1.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS `abntex_test`[0m
+  [1m[35m (56.1ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) PRIMARY KEY) ENGINE=InnoDB[0m
+  [1m[35m (75.1ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) PRIMARY KEY, `value` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT DATABASE() as db[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT GET_LOCK('2775444742128972480', 0);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreateUsers (20170820152102)
+  [1m[35m (11.5ms)[0m  [1m[35mCREATE TABLE `users` (`id` int AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `alias` varchar(255), `college` varchar(255), `is_active` tinyint(1), `is_admin` tinyint(1), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20170820152102')[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTemplates (20170820152123)
+  [1m[35m (10.2ms)[0m  [1m[35mCREATE TABLE `templates` (`id` int AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `description` varchar(255), `is_active` tinyint(1), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.8ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20170820152123')[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreatePapers (20170820152146)
+  [1m[35m (53.1ms)[0m  [1m[35mCREATE TABLE `papers` (`id` int AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `hash_name` varchar(255), `template_id` int, `user_id` int, `last_build` datetime, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_papers_on_template_id`  (`template_id`),  INDEX `index_papers_on_user_id`  (`user_id`), CONSTRAINT `fk_rails_4148a72140`
+FOREIGN KEY (`template_id`)
+  REFERENCES `templates` (`id`)
+, CONSTRAINT `fk_rails_9adcc8c446`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+) ENGINE=InnoDB[0m
+  [1m[35m (9.2ms)[0m  [1m[35mCREATE UNIQUE INDEX `index_papers_on_hash_name`  ON `papers` (`hash_name`) [0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20170820152146')[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateSections (20170820152233)
+  [1m[35m (11.5ms)[0m  [1m[35mCREATE TABLE `sections` (`id` int AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `template_id` int, `is_editable` tinyint(1), `is_wysiwyg` tinyint(1), `position` int, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_sections_on_template_id`  (`template_id`), CONSTRAINT `fk_rails_b05f240884`
+FOREIGN KEY (`template_id`)
+  REFERENCES `templates` (`id`)
+) ENGINE=InnoDB[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20170820152233')[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateFields (20170820152349)
+  [1m[35m (13.9ms)[0m  [1m[35mCREATE TABLE `fields` (`id` int AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `label` varchar(255), `open_tag` varchar(255), `close_tag` varchar(255), `is_multivalue` tinyint(1), `position` int, `section_id` int, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_fields_on_section_id`  (`section_id`), CONSTRAINT `fk_rails_fb23c35574`
+FOREIGN KEY (`section_id`)
+  REFERENCES `sections` (`id`)
+) ENGINE=InnoDB[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20170820152349')[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateContents (20170820152433)
+  [1m[35m (12.5ms)[0m  [1m[35mCREATE TABLE `contents` (`id` int AUTO_INCREMENT PRIMARY KEY, `paper_id` int, `field_id` int, `content` text, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_contents_on_paper_id`  (`paper_id`),  INDEX `index_contents_on_field_id`  (`field_id`), CONSTRAINT `fk_rails_5dc75ba26d`
+FOREIGN KEY (`paper_id`)
+  REFERENCES `papers` (`id`)
+, CONSTRAINT `fk_rails_bca35347a0`
+FOREIGN KEY (`field_id`)
+  REFERENCES `fields` (`id`)
+) ENGINE=InnoDB[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20170820152433')[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2017-09-22 22:47:04', '2017-09-22 22:47:04')[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT RELEASE_LOCK('2775444742128972480')[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSHOW CREATE TABLE `contents`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'contents'[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSHOW CREATE TABLE `fields`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'fields'[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSHOW CREATE TABLE `papers`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'papers'[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSHOW CREATE TABLE `sections`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'sections'[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSHOW CREATE TABLE `templates`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'templates'[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSHOW CREATE TABLE `users`[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'users'[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `users` (`name`, `alias`, `is_active`, `is_admin`, `created_at`, `updated_at`) VALUES ('Alysson', 'nu12', 1, 1, '2017-09-22 22:47:10', '2017-09-22 22:47:10')[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `templates` (`name`, `description`, `created_at`, `updated_at`) VALUES ('Blank', '1', '2017-09-22 22:47:10', '2017-09-22 22:47:10')[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `sections` (`name`, `template_id`, `is_editable`, `is_wysiwyg`, `created_at`, `updated_at`) VALUES ('Content', 1, 1, 1, '2017-09-22 22:47:10', '2017-09-22 22:47:10')[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `fields` (`name`, `label`, `open_tag`, `close_tag`, `section_id`, `created_at`, `updated_at`) VALUES ('Content', 'Content', 'documentclass{article}egin{document}', 'nd{document}', 1, '2017-09-22 22:47:10', '2017-09-22 22:47:10')[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/users" for 10.0.2.2 at 2017-09-22 22:47:50 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  Rendered users/index.html.erb within layouts/application (16.9ms)
+Completed 200 OK in 1559ms (Views: 1522.9ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/papers" for 10.0.2.2 at 2017-09-22 22:47:59 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by PapersController#index as HTML
+  Rendering papers/index.html.erb within layouts/application
+  [1m[36mPaper Load (0.3ms)[0m  [1m[34mSELECT `papers`.* FROM `papers`[0m
+  Rendered papers/index.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 291ms (Views: 267.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/papers/new" for 10.0.2.2 at 2017-09-22 22:48:02 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by PapersController#new as HTML
+  Rendering papers/new.html.erb within layouts/application
+  Rendered papers/_form.html.erb (24.9ms)
+  Rendered papers/new.html.erb within layouts/application (33.2ms)
+Completed 200 OK in 329ms (Views: 316.1ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/papers" for 10.0.2.2 at 2017-09-22 22:48:12 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by PapersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"cM6NLVX9xR9waWRaoNG1lLual/coi8F1Uc/d+UBbVJUW/c8qamgHJ2YWgHLtM0d80p625DZvL2QZgZCQNELT1A==", "paper"=>{"name"=>"paper novo", "template_id"=>"1", "user_id"=>"1"}, "commit"=>"Create Paper"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTemplate Load (0.4ms)[0m  [1m[34mSELECT  `templates`.* FROM `templates` WHERE `templates`.`id` = 1 LIMIT 1[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `papers` (`name`, `template_id`, `user_id`, `created_at`, `updated_at`) VALUES ('paper novo', 1, 1, '2017-09-22 22:48:12', '2017-09-22 22:48:12')[0m
+  [1m[35m (89.8ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/papers/1
+Completed 302 Found in 151ms (ActiveRecord: 92.0ms)
+
+
+Started GET "/papers/1" for 10.0.2.2 at 2017-09-22 22:48:12 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by PapersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPaper Load (0.3ms)[0m  [1m[34mSELECT  `papers`.* FROM `papers` WHERE `papers`.`id` = 1 LIMIT 1[0m
+  Rendering papers/show.html.erb within layouts/application
+  [1m[36mTemplate Load (0.3ms)[0m  [1m[34mSELECT  `templates`.* FROM `templates` WHERE `templates`.`id` = 1 LIMIT 1[0m
+  [1m[36mSection Load (0.3ms)[0m  [1m[34mSELECT `sections`.* FROM `sections` WHERE `sections`.`template_id` = 1[0m
+  Rendered papers/show.html.erb within layouts/application (38.3ms)
+Completed 200 OK in 321ms (Views: 310.5ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/contents/1/1" for 10.0.2.2 at 2017-09-22 22:48:15 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ContentsController#edit as HTML
+  Parameters: {"paper_id"=>"1", "section_id"=>"1"}
+  [1m[36mPaper Load (0.6ms)[0m  [1m[34mSELECT  `papers`.* FROM `papers` WHERE `papers`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `contents` WHERE (paper_id = 1 and field_id in (select distinct id from fields where section_id = 1))[0m
+  [1m[36mField Load (0.4ms)[0m  [1m[34mSELECT `fields`.* FROM `fields` WHERE (section_id = 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `contents` (`paper_id`, `field_id`, `created_at`, `updated_at`) VALUES (1, 1, '2017-09-22 22:48:15', '2017-09-22 22:48:15')[0m
+  [1m[35m (40.8ms)[0m  [1m[35mCOMMIT[0m
+  Rendering contents/edit.html.erb within layouts/application
+  [1m[36mContent Load (0.4ms)[0m  [1m[34mSELECT `contents`.* FROM `contents` WHERE (paper_id = 1 and field_id in (select distinct id from fields where section_id = 1))[0m
+  [1m[36mField Load (0.3ms)[0m  [1m[34mSELECT  `fields`.* FROM `fields` WHERE `fields`.`id` = 1 LIMIT 1[0m
+  [1m[36mSection Load (0.3ms)[0m  [1m[34mSELECT  `sections`.* FROM `sections` WHERE `sections`.`id` = 1 LIMIT 1[0m
+  [1m[36mPaper Load (0.3ms)[0m  [1m[34mSELECT  `papers`.* FROM `papers` WHERE `papers`.`id` = 1 LIMIT 1[0m
+  Rendered contents/_edit_editor.html.erb (6.8ms)
+  Rendered contents/edit.html.erb within layouts/application (35.2ms)
+Completed 200 OK in 410ms (Views: 309.8ms | ActiveRecord: 45.6ms)
+
+
+Started POST "/contents/update?method=post" for 10.0.2.2 at 2017-09-22 22:48:30 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ContentsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"+l9zyu4QPf0BZNebS7dooMY2+k+NCuQyb70ZYL8Z5cWDIya8jWfbVdq/MHy1czAKksHQdVtSoHRjjQQpKVHsfA==", "paper_id"=>["1"], "field_id"=>["1"], "content"=>["<p>fdfdsfs&nbsp;<strong>Texto /latex{inserido} pelo bot&atilde;o!</strong>&nbsp;</p>"], "commit"=>"Update", "method"=>"post"}
+  [1m[36mContent Load (0.5ms)[0m  [1m[34mSELECT  `contents`.* FROM `contents` WHERE (paper_id = 1 and field_id = 1) ORDER BY `contents`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPaper Load (0.4ms)[0m  [1m[34mSELECT  `papers`.* FROM `papers` WHERE `papers`.`id` = 1 LIMIT 1[0m
+  [1m[36mField Load (0.5ms)[0m  [1m[34mSELECT  `fields`.* FROM `fields` WHERE `fields`.`id` = 1 LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[33mUPDATE `contents` SET `content` = '<p>fdfdsfs&nbsp;<strong>Texto /latex{inserido} pelo bot&atilde;o!</strong>&nbsp;</p>', `updated_at` = '2017-09-22 22:48:30' WHERE `contents`.`id` = 1[0m
+  [1m[35m (2.6ms)[0m  [1m[35mCOMMIT[0m
+  Rendering contents/update.html.erb within layouts/application
+  Rendered contents/update.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 303ms (Views: 275.3ms | ActiveRecord: 4.4ms)
+
+
+Started GET "/contents/1/1" for 10.0.2.2 at 2017-09-22 23:27:34 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by ContentsController#edit as HTML
+  Parameters: {"paper_id"=>"1", "section_id"=>"1"}
+  [1m[36mPaper Load (0.3ms)[0m  [1m[34mSELECT  `papers`.* FROM `papers` WHERE `papers`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `contents` WHERE (paper_id = 1 and field_id in (select distinct id from fields where section_id = 1))[0m
+  Rendering contents/edit.html.erb within layouts/application
+  [1m[36mContent Load (0.4ms)[0m  [1m[34mSELECT `contents`.* FROM `contents` WHERE (paper_id = 1 and field_id in (select distinct id from fields where section_id = 1))[0m
+  [1m[36mField Load (0.3ms)[0m  [1m[34mSELECT  `fields`.* FROM `fields` WHERE `fields`.`id` = 1 LIMIT 1[0m
+  [1m[36mSection Load (0.4ms)[0m  [1m[34mSELECT  `sections`.* FROM `sections` WHERE `sections`.`id` = 1 LIMIT 1[0m
+  [1m[36mPaper Load (0.3ms)[0m  [1m[34mSELECT  `papers`.* FROM `papers` WHERE `papers`.`id` = 1 LIMIT 1[0m
+  Rendered contents/_edit_editor.html.erb (14.1ms)
+  Rendered contents/edit.html.erb within layouts/application (82.8ms)
+Completed 200 OK in 1944ms (Views: 1865.5ms | ActiveRecord: 5.3ms)
+
+
+Started POST "/contents/update?method=post" for 10.0.2.2 at 2017-09-22 23:27:47 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ContentsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"BCmMFcuq4t+vo1zE2i6KEa7jfTtVEckg9Ugeaavfz2XuFAj5Sg3n0c3tWBV6T+66tyfxRJE60F4JuoKcV3kI/w==", "paper_id"=>["1"], "field_id"=>["1"], "content"=>["<p>fdfdsfs&nbsp;<strong>Texto /latex{inserido} pelo bot&atilde;o!</strong>&nbsp;</p>"], "commit"=>"Update", "method"=>"post"}
+  [1m[36mContent Load (0.5ms)[0m  [1m[34mSELECT  `contents`.* FROM `contents` WHERE (paper_id = 1 and field_id = 1) ORDER BY `contents`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPaper Load (0.4ms)[0m  [1m[34mSELECT  `papers`.* FROM `papers` WHERE `papers`.`id` = 1 LIMIT 1[0m
+  [1m[36mField Load (0.4ms)[0m  [1m[34mSELECT  `fields`.* FROM `fields` WHERE `fields`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  Rendering contents/update.html.erb within layouts/application
+  Rendered contents/update.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 330ms (Views: 310.6ms | ActiveRecord: 1.6ms)
+
+
+Started POST "/contents/update?method=post" for 10.0.2.2 at 2017-09-22 23:28:33 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ContentsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"BCmMFcuq4t+vo1zE2i6KEa7jfTtVEckg9Ugeaavfz2XuFAj5Sg3n0c3tWBV6T+66tyfxRJE60F4JuoKcV3kI/w==", "paper_id"=>["1"], "field_id"=>["1"], "content"=>["<p>fdfdsfs&nbsp;<strong>Texto /latex{inserido} pelo bot&atilde;o!</strong>&nbsp;</p>"], "commit"=>"Update", "method"=>"post"}
+  [1m[36mContent Load (0.5ms)[0m  [1m[34mSELECT  `contents`.* FROM `contents` WHERE (paper_id = 1 and field_id = 1) ORDER BY `contents`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPaper Load (0.4ms)[0m  [1m[34mSELECT  `papers`.* FROM `papers` WHERE `papers`.`id` = 1 LIMIT 1[0m
+  [1m[36mField Load (0.3ms)[0m  [1m[34mSELECT  `fields`.* FROM `fields` WHERE `fields`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  Rendering contents/update.html.erb within layouts/application
+  Rendered contents/update.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 315ms (Views: 297.7ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/papers" for 10.0.2.2 at 2017-09-22 23:31:23 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by PapersController#index as HTML
+  Rendering papers/index.html.erb within layouts/application
+  [1m[36mPaper Load (0.3ms)[0m  [1m[34mSELECT `papers`.* FROM `papers`[0m
+  [1m[36mTemplate Load (0.3ms)[0m  [1m[34mSELECT  `templates`.* FROM `templates` WHERE `templates`.`id` = 1 LIMIT 1[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  Rendered papers/index.html.erb within layouts/application (43.9ms)
+Completed 200 OK in 356ms (Views: 345.0ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/build/1" for 10.0.2.2 at 2017-09-22 23:31:37 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ContentsController#build as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPaper Load (0.3ms)[0m  [1m[34mSELECT  `papers`.* FROM `papers` WHERE `papers`.`id` = 1 LIMIT 1[0m
+  [1m[36mTemplate Load (0.4ms)[0m  [1m[34mSELECT  `templates`.* FROM `templates` WHERE `templates`.`id` = 1 LIMIT 1[0m
+  [1m[36mSection Load (0.3ms)[0m  [1m[34mSELECT `sections`.* FROM `sections` WHERE `sections`.`template_id` = 1[0m
+  [1m[36mField Load (0.4ms)[0m  [1m[34mSELECT `fields`.* FROM `fields` WHERE `fields`.`section_id` = 1[0m
+  [1m[36mContent Load (0.3ms)[0m  [1m[34mSELECT  `contents`.* FROM `contents` WHERE (paper_id = 1 and field_id = 1) ORDER BY `contents`.`id` ASC LIMIT 1[0m
+  Rendering contents/build.html.erb within layouts/application
+  Rendered contents/build.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 339ms (Views: 290.7ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/build/1" for 10.0.2.2 at 2017-09-22 23:33:15 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by ContentsController#build as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPaper Load (0.3ms)[0m  [1m[34mSELECT  `papers`.* FROM `papers` WHERE `papers`.`id` = 1 LIMIT 1[0m
+  [1m[36mTemplate Load (0.3ms)[0m  [1m[34mSELECT  `templates`.* FROM `templates` WHERE `templates`.`id` = 1 LIMIT 1[0m
+  [1m[36mSection Load (0.3ms)[0m  [1m[34mSELECT `sections`.* FROM `sections` WHERE `sections`.`template_id` = 1[0m
+  [1m[36mField Load (0.4ms)[0m  [1m[34mSELECT `fields`.* FROM `fields` WHERE `fields`.`section_id` = 1[0m
+  [1m[36mContent Load (0.3ms)[0m  [1m[34mSELECT  `contents`.* FROM `contents` WHERE (paper_id = 1 and field_id = 1) ORDER BY `contents`.`id` ASC LIMIT 1[0m
+  Rendering contents/build.html.erb within layouts/application
+  Rendered contents/build.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 2044ms (Views: 1870.5ms | ActiveRecord: 5.7ms)
+
+
+Started GET "/papers/1/edit" for 10.0.2.2 at 2017-09-22 23:34:03 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by PapersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPaper Load (0.5ms)[0m  [1m[34mSELECT  `papers`.* FROM `papers` WHERE `papers`.`id` = 1 LIMIT 1[0m
+  Rendering papers/edit.html.erb within layouts/application
+  Rendered papers/_form.html.erb (27.5ms)
+  Rendered papers/edit.html.erb within layouts/application (36.5ms)
+Completed 200 OK in 361ms (Views: 350.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/papers/1" for 10.0.2.2 at 2017-09-22 23:34:09 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by PapersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPaper Load (0.3ms)[0m  [1m[34mSELECT  `papers`.* FROM `papers` WHERE `papers`.`id` = 1 LIMIT 1[0m
+  Rendering papers/show.html.erb within layouts/application
+  [1m[36mTemplate Load (0.3ms)[0m  [1m[34mSELECT  `templates`.* FROM `templates` WHERE `templates`.`id` = 1 LIMIT 1[0m
+  [1m[36mSection Load (0.3ms)[0m  [1m[34mSELECT `sections`.* FROM `sections` WHERE `sections`.`template_id` = 1[0m
+  Rendered papers/show.html.erb within layouts/application (5.1ms)
+Completed 200 OK in 303ms (Views: 292.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/contents/1/1" for 10.0.2.2 at 2017-09-22 23:34:12 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ContentsController#edit as HTML
+  Parameters: {"paper_id"=>"1", "section_id"=>"1"}
+  [1m[36mPaper Load (0.3ms)[0m  [1m[34mSELECT  `papers`.* FROM `papers` WHERE `papers`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `contents` WHERE (paper_id = 1 and field_id in (select distinct id from fields where section_id = 1))[0m
+  Rendering contents/edit.html.erb within layouts/application
+  [1m[36mContent Load (0.3ms)[0m  [1m[34mSELECT `contents`.* FROM `contents` WHERE (paper_id = 1 and field_id in (select distinct id from fields where section_id = 1))[0m
+  [1m[36mField Load (0.3ms)[0m  [1m[34mSELECT  `fields`.* FROM `fields` WHERE `fields`.`id` = 1 LIMIT 1[0m
+  [1m[36mSection Load (0.3ms)[0m  [1m[34mSELECT  `sections`.* FROM `sections` WHERE `sections`.`id` = 1 LIMIT 1[0m
+  [1m[36mPaper Load (0.3ms)[0m  [1m[34mSELECT  `papers`.* FROM `papers` WHERE `papers`.`id` = 1 LIMIT 1[0m
+  Rendered contents/_edit_editor.html.erb (9.2ms)
+  Rendered contents/edit.html.erb within layouts/application (30.0ms)
+Completed 200 OK in 349ms (Views: 335.9ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/contents/1/1" for 10.0.2.2 at 2017-09-22 23:41:00 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by ContentsController#edit as HTML
+  Parameters: {"paper_id"=>"1", "section_id"=>"1"}
+  [1m[36mPaper Load (0.3ms)[0m  [1m[34mSELECT  `papers`.* FROM `papers` WHERE `papers`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `contents` WHERE (paper_id = 1 and field_id in (select distinct id from fields where section_id = 1))[0m
+  Rendering contents/edit.html.erb within layouts/application
+  [1m[36mContent Load (0.4ms)[0m  [1m[34mSELECT `contents`.* FROM `contents` WHERE (paper_id = 1 and field_id in (select distinct id from fields where section_id = 1))[0m
+  [1m[36mField Load (0.3ms)[0m  [1m[34mSELECT  `fields`.* FROM `fields` WHERE `fields`.`id` = 1 LIMIT 1[0m
+  [1m[36mSection Load (0.4ms)[0m  [1m[34mSELECT  `sections`.* FROM `sections` WHERE `sections`.`id` = 1 LIMIT 1[0m
+  [1m[36mPaper Load (0.3ms)[0m  [1m[34mSELECT  `papers`.* FROM `papers` WHERE `papers`.`id` = 1 LIMIT 1[0m
+  Rendered contents/_edit_editor.html.erb (15.5ms)
+  Rendered contents/edit.html.erb within layouts/application (91.0ms)
+Completed 200 OK in 2253ms (Views: 2168.4ms | ActiveRecord: 5.4ms)
+
+
+Started POST "/contents/update?method=post" for 10.0.2.2 at 2017-09-22 23:41:37 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ContentsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Zpiz8hkjMS1eyQlB6jIW2TNdj8jHJND5LzJnHUnLEfOMpTcemIQ0IzyHDZBKU3JyKpkDtwMPyYfTwPvotW3WaQ==", "paper_id"=>["1"], "field_id"=>["1"], "content"=>["<p>testando o latex com uns <em>comandos</em> cabulosos.</p>\r\n<p>&nbsp;</p>\r\n<p>Aqui espero que seja outro <strong>paragrafo</strong>!!</p>"], "commit"=>"Update", "method"=>"post"}
+  [1m[36mContent Load (0.5ms)[0m  [1m[34mSELECT  `contents`.* FROM `contents` WHERE (paper_id = 1 and field_id = 1) ORDER BY `contents`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPaper Load (0.3ms)[0m  [1m[34mSELECT  `papers`.* FROM `papers` WHERE `papers`.`id` = 1 LIMIT 1[0m
+  [1m[36mField Load (0.4ms)[0m  [1m[34mSELECT  `fields`.* FROM `fields` WHERE `fields`.`id` = 1 LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[33mUPDATE `contents` SET `content` = '<p>testando o latex com uns <em>comandos</em> cabulosos.</p>\r\n<p>&nbsp;</p>\r\n<p>Aqui espero que seja outro <strong>paragrafo</strong>!!</p>', `updated_at` = '2017-09-22 23:41:37' WHERE `contents`.`id` = 1[0m
+  [1m[35m (37.3ms)[0m  [1m[35mCOMMIT[0m
+  Rendering contents/update.html.erb within layouts/application
+  Rendered contents/update.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 383ms (Views: 315.6ms | ActiveRecord: 39.0ms)
+
+
+Started GET "/build/1" for 10.0.2.2 at 2017-09-22 23:41:49 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ContentsController#build as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPaper Load (0.3ms)[0m  [1m[34mSELECT  `papers`.* FROM `papers` WHERE `papers`.`id` = 1 LIMIT 1[0m
+  [1m[36mTemplate Load (0.3ms)[0m  [1m[34mSELECT  `templates`.* FROM `templates` WHERE `templates`.`id` = 1 LIMIT 1[0m
+  [1m[36mSection Load (0.3ms)[0m  [1m[34mSELECT `sections`.* FROM `sections` WHERE `sections`.`template_id` = 1[0m
+  [1m[36mField Load (0.5ms)[0m  [1m[34mSELECT `fields`.* FROM `fields` WHERE `fields`.`section_id` = 1[0m
+  [1m[36mContent Load (0.4ms)[0m  [1m[34mSELECT  `contents`.* FROM `contents` WHERE (paper_id = 1 and field_id = 1) ORDER BY `contents`.`id` ASC LIMIT 1[0m
+  Rendering contents/build.html.erb within layouts/application
+  Rendered contents/build.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 423ms (Views: 349.3ms | ActiveRecord: 2.9ms)
+
+
