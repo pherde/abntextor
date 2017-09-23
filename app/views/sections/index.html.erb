@@ -11,7 +11,7 @@
       <th>Is editable</th>
       <th>Is wysiwyg</th>
       <th>Position</th>
-      <th colspan="3"></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -24,9 +24,10 @@
         <td><%= section.is_editable %></td>
         <td><%= section.is_wysiwyg %></td>
         <td><%= section.position %></td>
-        <td><%= link_to 'Show', section %></td>
-        <td><%= link_to 'Edit', edit_section_path(section) %></td>
-        <td><%= link_to 'Destroy', section, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Fields', section_fields_path(section) %></td>
+        <td><%= link_to 'Show', template_section_path(section.template, section) %></td>
+        <td><%= link_to 'Edit', edit_template_section_path(section.template, section) %></td>
+        <td><%= link_to 'Destroy', template_section_path(section.template, section), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,4 +35,4 @@
 
 <br>
 
-<%= link_to 'New Section', new_section_path %>
+<%= link_to 'New Section', new_template_section_path %>

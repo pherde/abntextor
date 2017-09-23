@@ -24,9 +24,9 @@
         <td><%= field.close_tag %></td>
         <td><%= field.position %></td>
         <td><%= field.section.name %></td>
-        <td><%= link_to 'Show', field %></td>
-        <td><%= link_to 'Edit', edit_field_path(field) %></td>
-        <td><%= link_to 'Destroy', field, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', section_field_path(field.section, field) %></td>
+        <td><%= link_to 'Edit', edit_section_field_path(field.section, field) %></td>
+        <td><%= link_to 'Destroy', section_field_path(field.section, field), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,4 +34,4 @@
 
 <br>
 
-<%= link_to 'New Field', new_field_path %>
+<%= link_to 'New Field', new_section_field_path %>

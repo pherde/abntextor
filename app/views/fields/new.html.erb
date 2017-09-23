@@ -1,5 +1,5 @@
 <h1>New Field</h1>
 
-<%= render 'form', field: @field %>
+<%= render 'form', section: @section, field: @field %>
 
-<%= link_to 'Back', fields_path %>
+<%= link_to 'Back', section_fields_path(@section) %>

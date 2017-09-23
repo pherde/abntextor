@@ -1,6 +1,6 @@
 <h1>Editing Field</h1>
 
-<%= render 'form', field: @field %>
+<%= render 'form', section: @field.section, field: @field %>
 
-<%= link_to 'Show', @field %> |
-<%= link_to 'Back', fields_path %>
+<%= link_to 'Show', section_field_path(@field.section,@field) %> |
+<%= link_to 'Back', section_fields_path(@field.section) %>

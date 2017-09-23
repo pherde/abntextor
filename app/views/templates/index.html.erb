@@ -8,7 +8,7 @@
       <th>Name</th>
       <th>Description</th>
       <th>Is active</th>
-      <th colspan="3"></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -18,6 +18,7 @@
         <td><%= template.name %></td>
         <td><%= template.description %></td>
         <td><%= template.is_active %></td>
+        <td><%= link_to "Sections", template_sections_path(template.id) %></td>
         <td><%= link_to 'Show', template %></td>
         <td><%= link_to 'Edit', edit_template_path(template) %></td>
         <td><%= link_to 'Destroy', template, method: :delete, data: { confirm: 'Are you sure?' } %></td>

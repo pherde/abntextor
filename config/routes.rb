@@ -6,10 +6,14 @@ Rails.application.routes.draw do
   post 'contents/update'
   get "/build/:id", to: "contents#build"
 
-  resources :fields
-  resources :sections
   resources :papers
-  resources :templates
+  resources :templates do
+    resources :sections
+  end
+  resources :sections do
+    resources :fields
+  end
+  
   resources :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

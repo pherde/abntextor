@@ -15,6 +15,7 @@ class SectionsController < ApplicationController
   # GET /sections/new
   def new
     @section = Section.new
+    @template = Template.find(params[:template_id])
   end
 
   # GET /sections/1/edit
@@ -28,7 +29,7 @@ class SectionsController < ApplicationController
 
     respond_to do |format|
       if @section.save
-        format.html { redirect_to @section, notice: 'Section was successfully created.' }
+        format.html { redirect_to template_sections_path(@section.template), notice: 'Section was successfully created.' }
         format.json { render :show, status: :created, location: @section }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class SectionsController < ApplicationController
   def update
     respond_to do |format|
       if @section.update(section_params)
-        format.html { redirect_to @section, notice: 'Section was successfully updated.' }
+        format.html { redirect_to template_sections_path(@section.template), notice: 'Section was successfully updated.' }
         format.json { render :show, status: :ok, location: @section }
       else
         format.html { render :edit }
@@ -56,7 +57,7 @@ class SectionsController < ApplicationController
   def destroy
     @section.destroy
     respond_to do |format|
-      format.html { redirect_to sections_url, notice: 'Section was successfully destroyed.' }
+      format.html { redirect_to template_sections_path(@section.template), notice: 'Section was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -71,4 +72,5 @@ class SectionsController < ApplicationController
     def section_params
       params.require(:section).permit(:name, :template_id, :is_editable, :is_wysiwyg, :position)
     end
+
 end

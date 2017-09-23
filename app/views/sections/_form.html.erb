@@ -1,4 +1,4 @@
-<%= form_for(section) do |f| %>
+<%= form_for([template, section]) do |f| %>
   <% if section.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(section.errors.count, "error") %> prohibited this section from being saved:</h2>
@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= f.label :template_id %>
-    <%= f.text_field :template_id %>
+    <%= f.text_field :template_id, value: template.id %>
   </div>
 
   <div class="field">

@@ -1,4 +1,4 @@
-<%= form_for(field) do |f| %>
+<%= form_for([section, field]) do |f| %>
   <% if field.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(field.errors.count, "error") %> prohibited this field from being saved:</h2>
@@ -38,7 +38,7 @@
 
   <div class="field">
     <%= f.label :section_id %>
-    <%= f.text_field :section_id %>
+    <%= f.text_field :section_id, value: section.id %>
   </div>
 
   <div class="actions">
