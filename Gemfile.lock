@@ -1,3 +1,8 @@
+PATH
+  remote: /vagrant/html2latex
+  specs:
+    html2latex (0.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -164,6 +169,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
+  html2latex!
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
