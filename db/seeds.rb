@@ -29,8 +29,8 @@
 
 		:name => "Content",
 		:label => "Content",
-		:open_tag => "\documentclass{article}\begin{document}",
-		:close_tag => "\end{document}"
+		:open_tag => "\\documentclass{article}\\begin{document}",
+		:close_tag => "\\end{document}"
 		})
 	field.section = section
 
