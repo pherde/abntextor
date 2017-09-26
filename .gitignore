@@ -1,2 +1,3 @@
-tmp/cache
+tmp/cache/
 log/
+public/tex/
