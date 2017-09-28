@@ -11,22 +11,22 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %>
+  <div class="input-field col s6">
     <%= f.text_field :name %>
+    <%= f.label :name, "Nome do trabalho" %>
+  </div>
+
+  <div class="input-field col s6">
+    <%= f.select(:template_id, [["Selecione o template", 0], ["Template 1", 1],["Teplate 2", 2]])  %>
   </div>
 
   <div class="field">
-    <%= f.label :template_id %>
-    <%= f.text_field :template_id %>
+    <%= f.hidden_field :user_id, value: 1, readonly: "readonly" %>
   </div>
 
-  <div class="field">
-    <%= f.label :user_id %>
-    <%= f.text_field :user_id %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
+  <div class="actions col s12 right">
+    <%= f.submit paper.new_record? ? "Criar trabalho" : "Alterar trabalho", class: "btn" %>
+    <%= link_to 'Conteúdo', @paper, class: "btn" if !paper.new_record? %>
+    <%= link_to 'Voltar', papers_path, class: "btn red" %>
   </div>
 <% end %>
