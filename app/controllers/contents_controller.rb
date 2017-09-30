@@ -1,8 +1,8 @@
 class ContentsController < ApplicationController
   def edit
-  	paper = Paper.find(params[:paper_id])
+  	@paper = Paper.find(params[:paper_id])
   	@fields = Field.where("section_id = #{params[:section_id]}")
-  	@contents = Content.where("paper_id = #{paper.id} and field_id in (select distinct id from fields where section_id = #{params[:section_id]})")
+  	@contents = Content.where("paper_id = #{@paper.id} and field_id in (select distinct id from fields where section_id = #{params[:section_id]})")
   	if @contents.empty? 
   		@fields.each do |field|
   			c = Content.new

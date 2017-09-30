@@ -1,9 +1,9 @@
-<h1>Contents#edit</h1>
-<p>Find me in app/views/contents/edit.html.erb</p>
-
-
-<%= @contents.inspect %>
-
+<div class="col s2 left">
+	<% @paper.template.sections.each do |section| %>
+		<p><%= link_to "#{section.name}", "/contents/#{@paper.id}/#{section.id}" %></p>
+	<% end %>
+</div>
+<div class="col s10 right">
 <%= form_tag(controller: "contents", action: "update", method: "post") do %>
   <% @contents.each do |content| %>
 	<% if content.field.section.is_wysiwyg %>
@@ -15,6 +15,8 @@
 
 
   <div class="actions">
-    <%= submit_tag("Update") %>
+    <%= submit_tag("Salvar", {class: "btn"}) %>
+    <%= link_to "Voltar", papers_path, class: "btn red" %>
   </div>
 <% end %>
+</div>

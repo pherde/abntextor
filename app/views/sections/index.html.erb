@@ -1,17 +1,26 @@
-<p id="notice"><%= notice %></p>
+<h1>Seções</h1>
 
-<h1>Sections</h1>
+<nav>
+  <div class="nav-wrapper">
+    <div class="col s12">
+      <%= link_to "Template: #{@sections[0].template.name}", templates_path, class: "breadcrumb" %>
+      <a href="#!" class="breadcrumb">Seções</a>
+    </div>
+  </div>
+</nav>
 
-<table>
+
+
+<table class="striped bordered">
   <thead>
     <tr>
       <th>ID</th>
-      <th>Name</th>
+      <th>Nome</th>
       <th>Template</th>
-      <th>Is editable</th>
-      <th>Is wysiwyg</th>
-      <th>Position</th>
-      <th colspan="4"></th>
+      <th>Editável</th>
+      <th>Editor</th>
+      <th>Posição</th>
+      <th colspan="3"><%= link_to "<i class='material-icons'>add</i>".html_safe, new_template_section_path, class: "btn-floating right" %></th>
     </tr>
   </thead>
 
@@ -21,18 +30,14 @@
         <td><%= section.id %></td>
         <td><%= section.name %></td>
         <td><%= section.template.name %></td>
-        <td><%= section.is_editable %></td>
-        <td><%= section.is_wysiwyg %></td>
+        <td><span class="btn-floating <%= section.is_editable ? 'green' : 'red' %>"></span></td>
+        <td><span class="btn-floating <%= section.is_wysiwyg ? 'green' : 'red' %>"></span></td>
         <td><%= section.position %></td>
-        <td><%= link_to 'Fields', section_fields_path(section) %></td>
-        <td><%= link_to 'Show', template_section_path(section.template, section) %></td>
-        <td><%= link_to 'Edit', edit_template_section_path(section.template, section) %></td>
-        <td><%= link_to 'Destroy', template_section_path(section.template, section), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Campos', section_fields_path(section) %></td>
+        <td><%= link_to "<i class='material-icons'>edit</i>".html_safe, edit_template_section_path(section.template, section),class: "btn-floating" %></td>
+        <td><%= link_to "<i class='material-icons'>edit</i>".html_safe, template_section_path(section.template, section), method: :delete, data: { confirm: 'Excluir seção permanentemente?' }, class: "btn-floating red" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
 <br>
-
-<%= link_to 'New Section', new_template_section_path %>

@@ -1,9 +1,6 @@
- <h1>Colocar o editor aqui</h1>
   <div class="field">
- 	<%= text_field_tag("paper_id[]", "#{content.paper.id}", :multiple => true) %>
-  	<%= text_field_tag("field_id[]", "#{content.field.id}", :multiple => true) %>
-  	<%= label_tag("#{content.field.id}", "#{content.field.label}") %>
-
+ 	<%= hidden_field_tag("paper_id[]", "#{content.paper.id}", :multiple => true) %>
+  	<%= hidden_field_tag("field_id[]", "#{content.field.id}", :multiple => true) %>
 	<%= text_area_tag("content[]", "#{content.content}", :class => "tinymce", :rows => 30, :multiple => true) %>
 	<%= tinymce %>
   </div>

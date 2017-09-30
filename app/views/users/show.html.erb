@@ -1,29 +1,59 @@
-<p id="notice"><%= notice %></p>
+<h1>Detalhes do usuário</h1>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+<table>
+  <tr>
+    <td>Nome</td>
+    <td><%= @user.name %></td>
+  </tr>
+  <tr>
+    <td>Apelido</td>
+    <td><%= @user.alias %></td>
+  </tr>
+  <tr>
+    <td>Instituição</td>
+    <td><%= @user.college %></td>
+  </tr>
+  <tr>
+    <td>Usuário ativo</td>
+    <td><span class="btn-floating <%= @user.is_active ? 'green' : 'red' %>"></span></td>
+  </tr>
+  <tr>
+    <td>Usuário administrador</td>
+    <td><span class="btn-floating <%= @user.is_admin ? 'green' : 'red' %>"></span></td>
+  </tr>
+</table>
 
-<p>
-  <strong>Alias:</strong>
-  <%= @user.alias %>
-</p>
 
-<p>
-  <strong>College:</strong>
-  <%= @user.college %>
-</p>
+<%= link_to 'Editar', edit_user_path(@user), class: "btn" %>
+<%= link_to 'Voltar', users_path, class: "btn red" %>
 
-<p>
-  <strong>Is active:</strong>
-  <%= @user.is_active %>
-</p>
+<div class="separator"></div>
 
-<p>
-  <strong>Is admin:</strong>
-  <%= @user.is_admin %>
-</p>
+<h3>Trabalhos desse usuário</h3>
+<p>Total: <%= @user.papers.size %></p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<table class="bordered striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Template</th>
+      <th>Criado</th>
+      <th>Última compilação</th>
+      <th>Usuário</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user.papers.each do |paper| %>
+      <tr>
+        <td><%= paper.id %></td>
+        <td><%= paper.name %></td>
+        <td><%= paper.template.name %></td>
+        <td><%= paper.created_at %></td>
+        <td></td>
+        <td><%= paper.user.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

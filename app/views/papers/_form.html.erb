@@ -26,7 +26,12 @@
 
   <div class="actions col s12 right">
     <%= f.submit paper.new_record? ? "Criar trabalho" : "Alterar trabalho", class: "btn" %>
-    <%= link_to 'Conteúdo', @paper, class: "btn" if !paper.new_record? %>
     <%= link_to 'Voltar', papers_path, class: "btn red" %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+ $(document).ready(function() {
+    $('select').material_select();
+ });
+</script>

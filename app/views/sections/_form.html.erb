@@ -11,32 +11,38 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %>
+  <%= f.hidden_field :template_id, value: template.id %>
+
+  <div class="input-field">
     <%= f.text_field :name %>
+    <%= f.label :name, "Nome da seção" %>
   </div>
 
-  <div class="field">
-    <%= f.label :template_id %>
-    <%= f.text_field :template_id, value: template.id %>
+  <div class="row">
+    <div class="field col s4">
+      <%= f.check_box :is_editable %>
+      <%= f.label :is_editable, "Editável" %>
+    </div>
+
+    <div class="field col s4">
+      <%= f.check_box :is_wysiwyg %>
+      <%= f.label :is_wysiwyg, "Usa editor" %>
+    </div>
+
+    <div class="field col s4">
+      <%= f.select(:position, [["Posição", 0],["1", 1],["2", 2]]) %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :is_editable %>
-    <%= f.check_box :is_editable %>
-  </div>
-
-  <div class="field">
-    <%= f.label :is_wysiwyg %>
-    <%= f.check_box :is_wysiwyg %>
-  </div>
-
-  <div class="field">
-    <%= f.label :position %>
-    <%= f.number_field :position %>
-  </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit section.new_record? ? "Criar seção" : "Alterar seção", class: "btn" %>
+    <%= link_to 'Voltar', template_sections_path(template), class: "btn red" %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+ $(document).ready(function() {
+    $('select').material_select();
+ });
+</script>

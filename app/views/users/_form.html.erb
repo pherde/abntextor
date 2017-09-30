@@ -11,32 +11,34 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %>
+  <div class="input-field">
     <%= f.text_field :name %>
+    <%= f.label :name, "Nome" %>
   </div>
 
-  <div class="field">
-    <%= f.label :alias %>
+  <div class="input-field">
     <%= f.text_field :alias %>
+    <%= f.label :alias, "Apelido" %>
   </div>
 
-  <div class="field">
-    <%= f.label :college %>
+  <div class="input-field">
     <%= f.text_field :college %>
+    <%= f.label :college, "Instituição" %>
   </div>
 
   <div class="field">
-    <%= f.label :is_active %>
     <%= f.check_box :is_active %>
+    <%= f.label :is_active, "Ativo" %>
   </div>
 
   <div class="field">
-    <%= f.label :is_admin %>
     <%= f.check_box :is_admin %>
+    <%= f.label :is_admin, "Admin" %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit user.new_record? ? "Criar usuário" : "Alterar usuário", class: "btn" %>
+    <%= link_to 'Detalhes', user, class: "btn" %>
+    <%= link_to 'Voltar', users_path, class: "btn red" %>
   </div>
 <% end %>

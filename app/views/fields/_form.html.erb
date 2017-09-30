@@ -11,37 +11,39 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %>
+  <%= f.hidden_field :section_id, value: section.id %>
+  <div class="input-field col s4">
     <%= f.text_field :name %>
+    <%= f.label :name, "Nome" %>
   </div>
 
-  <div class="field">
-    <%= f.label :label %>
+  <div class="input-field col s4">
     <%= f.text_field :label %>
+    <%= f.label :label, "Label" %>
   </div>
 
-  <div class="field">
-    <%= f.label :open_tag %>
+  <div class=" input-field col s4">
+    <%= f.select(:position, [["Posição", 0],["1", 1],["2", 2]]) %>
+  </div>
+
+  <div class="input-field col s12">
     <%= f.text_field :open_tag %>
+    <%= f.label :open_tag, "Tag de abertura" %>
   </div>
 
-  <div class="field">
-    <%= f.label :close_tag %>
+  <div class="input-field col s12">
     <%= f.text_field :close_tag %>
-  </div>
-
-  <div class="field">
-    <%= f.label :position %>
-    <%= f.number_field :position %>
-  </div>
-
-  <div class="field">
-    <%= f.label :section_id %>
-    <%= f.text_field :section_id, value: section.id %>
+    <%= f.label :close_tag, "Tag de fechamento" %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit field.new_record? ? "Criar campo" : "Alterar campo", class: "btn" %>
+    <%= link_to 'Voltar', section_fields_path(section), class: "btn red" %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+ $(document).ready(function() {
+    $('select').material_select();
+ });
+</script>

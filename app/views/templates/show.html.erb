@@ -1,19 +1,51 @@
-<p id="notice"><%= notice %></p>
+<h1>Detalhes do template</h1>
 
-<p>
-  <strong>Name:</strong>
-  <%= @template.name %>
-</p>
+<table>
+	<tr>
+		<td>Nome</td>
+		<td><%= @template.name %></td>
+	</tr>
+	<tr>
+		<td>Descrição</td>
+		<td><%= @template.description %></td>
+	</tr>
+	<tr>
+		<td>Disponível</td>
+		<td><span class="btn-floating <%= @template.is_active ? 'green' : 'red' %>"></span></td>
+	</tr>
+</table>
 
-<p>
-  <strong>Description:</strong>
-  <%= @template.description %>
-</p>
 
-<p>
-  <strong>Is active:</strong>
-  <%= @template.is_active %>
-</p>
+<%= link_to 'Editar', edit_template_path(@template), class: "btn" %>
+<%= link_to 'Voltar', templates_path, class: "btn red" %>
 
-<%= link_to 'Edit', edit_template_path(@template) %> |
-<%= link_to 'Back', templates_path %>
+<div class="separator"></div>
+
+<h3>Trabalhos que utilizam esse template</h3>
+<p>Total: <%= @template.papers.size %></p>
+
+<table class="bordered striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Template</th>
+      <th>Criado</th>
+      <th>Última compilação</th>
+      <th>Usuário</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @template.papers.each do |paper| %>
+      <tr>
+        <td><%= paper.id %></td>
+        <td><%= paper.name %></td>
+        <td><%= paper.template.name %></td>
+        <td><%= paper.created_at %></td>
+        <td></td>
+        <td><%= paper.user.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

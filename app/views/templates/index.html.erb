@@ -1,27 +1,34 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Templates</h1>
+<nav>
+  <div class="nav-wrapper">
+    <div class="col s12">
+      <a href="#!" class="breadcrumb">Templates</a>
+    </div>
+  </div>
+</nav>
 
-<table>
+<table class="bordered striped">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Is active</th>
-      <th colspan="4"></th>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Descrição</th>
+      <th>Disponível</th>
+      <th colspan="4"><%= link_to "<i class='material-icons'>add</i>".html_safe, new_template_path, class: "btn-floating right" %></th>
     </tr>
   </thead>
 
   <tbody>
     <% @templates.each do |template| %>
       <tr>
+        <td><%= template.id %></td>
         <td><%= template.name %></td>
         <td><%= template.description %></td>
-        <td><%= template.is_active %></td>
-        <td><%= link_to "Sections", template_sections_path(template.id) %></td>
-        <td><%= link_to 'Show', template %></td>
-        <td><%= link_to 'Edit', edit_template_path(template) %></td>
-        <td><%= link_to 'Destroy', template, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><span class="btn-floating <%= template.is_active ? 'green' : 'red' %>"></span></td>
+        <td><%= link_to "Seções", template_sections_path(template.id) %></td>
+        <td><%= link_to "<i class='material-icons'>more</i>".html_safe, template, class: "btn-floating" %></td>
+        <td><%= link_to "<i class='material-icons'>edit</i>".html_safe, edit_template_path(template), class: "btn-floating" %></td>
+        <td><%= link_to "<i class='material-icons'>delete</i>".html_safe, template, method: :delete, data: { confirm: 'Excluir template permanentemente?' }, class: "btn-floating red" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -29,4 +36,3 @@
 
 <br>
 
-<%= link_to 'New Template', new_template_path %>

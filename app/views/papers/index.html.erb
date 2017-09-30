@@ -1,8 +1,5 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Trabalhos</h1>
 
-<%= link_to 'Novo trabalho', new_paper_path, class: "btn right" %>
 <table class="bordered striped">
   <thead>
     <tr>
@@ -11,7 +8,7 @@
       <th>Template</th>
       <th>Criado</th>
       <th>Última compilação</th>
-      <th colspan="4"></th>
+      <th colspan="3"><%= link_to "<i class='material-icons'>add</i>".html_safe, new_paper_path, class: "btn-floating right" %></th>
     </tr>
   </thead>
 
@@ -23,10 +20,9 @@
         <td><%= paper.template.name %></td>
         <td><%= paper.created_at %></td>
         <td></td>
-        <td><%= link_to "<i class='material-icons'>picture_as_pdf</i>".html_safe, "#", class: "btn-floating" %></td>
-        <td><%= link_to "<i class='material-icons'>insert_drive_file</i>".html_safe, paper, class: "btn-floating" %></td>
-        <td><%= link_to "<i class='material-icons'>edit</i>".html_safe, edit_paper_path(paper), class: "btn-floating" %></td>
-        <td><%= link_to "<i class='material-icons'>delete</i>".html_safe, paper, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-floating red" %></td>
+        <td><%= link_to "<i class='material-icons'>picture_as_pdf</i>".html_safe, "/build/#{paper.id}", class: "btn-floating" %></td>
+        <td><%= link_to "<i class='material-icons'>edit</i>".html_safe, "/contents/#{paper.id}/#{paper.template.sections[0].id}", class: "btn-floating" %></td>
+        <td><%= link_to "<i class='material-icons'>delete</i>".html_safe, paper, method: :delete, data: { confirm: 'Excluir trabalho permanentemente?' }, class: "btn-floating red" %></td>
       </tr>
     <% end %>
   </tbody>

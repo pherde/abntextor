@@ -1,6 +1,20 @@
-<h1>Editing User</h1>
+<h1>Editar usuário</h1>
 
-<%= render 'form', user: @user %>
+<div class="col s3 left">
+	<div class="row col s12">
+		<i class="large material-icons">account_circle</i>
+		<table>
+			<tr>
+				<td>Usuário desde: </td>
+			</tr>
+			<tr>
+				<td>Quantidade de trabalhos: </td>
+			</tr>
+		</table>
+		<%= link_to "Alterar senha", "#" %>
+	</div>
+</div>
+<div class="col s9 right">
+	<%= render 'form', user: @user %>
+</div>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>

@@ -11,22 +11,24 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %>
+  <div class="input-field">
     <%= f.text_field :name %>
+    <%= f.label :name, "Nome" %>
   </div>
 
-  <div class="field">
-    <%= f.label :description %>
+  <div class="input-field">
     <%= f.text_field :description %>
+    <%= f.label :description, "Descrição" %>
   </div>
 
   <div class="field">
-    <%= f.label :is_active %>
     <%= f.check_box :is_active %>
+    <%= f.label :is_active, "Disponível" %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit template.new_record? ? "Criar template" : "Alterar template", class: "btn" %>
+    <%= link_to 'Detalhes', template_path(template), class: "btn" unless template.new_record? %>
+    <%= link_to 'Voltar', templates_path, class: "btn red" %>
   </div>
 <% end %>
