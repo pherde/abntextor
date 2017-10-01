@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+  get 'build/build'
+
   root "papers#index"
   
   get "/contents/:paper_id/:section_id", to: "contents#edit"
   get 'contents/edit'
   post 'contents/update'
-  get "/build/:id", to: "contents#build"
+  get "/build/:id", to: "build#build"
 
   resources :papers
   resources :templates do
