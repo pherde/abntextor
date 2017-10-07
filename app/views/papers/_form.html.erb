@@ -17,11 +17,14 @@
   </div>
 
   <div class="input-field col s6">
-    <%= f.select(:template_id, [["Selecione o template", 0], ["Template 1", 1],["Teplate 2", 2]])  %>
+    
+    <%= f.select(:template_id, paper.new_record? ? @templates.map{ |t| ["#{t.name}", t.id] } : [["#{paper.template.name}", paper.template.id]])  %>
+    
+    <%= f.label :template_id, "Template" %>
   </div>
 
   <div class="field">
-    <%= f.hidden_field :user_id, value: 1, readonly: "readonly" %>
+    <%= f.hidden_field :user_id, value: @user.id, readonly: "readonly" %>
   </div>
 
   <div class="actions col s12 right">

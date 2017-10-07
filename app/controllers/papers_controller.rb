@@ -1,5 +1,6 @@
 class PapersController < ApplicationController
   before_action :set_paper, only: [:show, :edit, :update, :destroy]
+  before_action :set_templates, only: [:new]
 
   # GET /papers
   # GET /papers.json
@@ -28,7 +29,7 @@ class PapersController < ApplicationController
 
     respond_to do |format|
       if @paper.save
-        format.html { redirect_to @paper, notice: 'Paper was successfully created.' }
+        format.html { redirect_to papers_path, notice: 'Trabalho criado com sucesso.' }
         format.json { render :show, status: :created, location: @paper }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class PapersController < ApplicationController
   def update
     respond_to do |format|
       if @paper.update(paper_params)
-        format.html { redirect_to @paper, notice: 'Paper was successfully updated.' }
+        format.html { redirect_to papers_path, notice: 'Trabalho alterado com sucesso.' }
         format.json { render :show, status: :ok, location: @paper }
       else
         format.html { render :edit }
@@ -56,7 +57,7 @@ class PapersController < ApplicationController
   def destroy
     @paper.destroy
     respond_to do |format|
-      format.html { redirect_to papers_url, notice: 'Paper was successfully destroyed.' }
+      format.html { redirect_to papers_url, notice: 'Trabalho excluído com sucesso.' }
       format.json { head :no_content }
     end
   end
@@ -70,5 +71,9 @@ class PapersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def paper_params
       params.require(:paper).permit(:name, :template_id, :user_id)
+    end
+
+    def set_templates
+      @templates = Template.active
     end
 end

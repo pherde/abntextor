@@ -3,8 +3,8 @@
 <nav>
   <div class="nav-wrapper">
     <div class="col s12">
-      <%= link_to "Template: #{@fields[0].section.template.name}", templates_path, class: "breadcrumb" %>
-      <%= link_to "Seção: #{@fields[0].section.name}", template_sections_path(@fields[0].section.template), class: "breadcrumb" %>
+      <%= link_to "Template: #{@section.template.name}", templates_path, class: "breadcrumb" %>
+      <%= link_to "Seção: #{@section.name}", template_sections_path(@section.template), class: "breadcrumb" %>
       <a href="#!" class="breadcrumb">Campos</a>
     </div>
   </div>

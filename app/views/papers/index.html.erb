@@ -16,12 +16,12 @@
     <% @papers.each do |paper| %>
       <tr>
         <td><%= paper.id %></td>
-        <td><%= paper.name %></td>
+        <td><%= link_to "#{paper.name}", "/contents/#{paper.id}/#{paper.template.sections[0].id}" %></td>
         <td><%= paper.template.name %></td>
         <td><%= paper.created_at %></td>
         <td></td>
         <td><%= link_to "<i class='material-icons'>picture_as_pdf</i>".html_safe, "/build/#{paper.id}", class: "btn-floating" %></td>
-        <td><%= link_to "<i class='material-icons'>edit</i>".html_safe, "/contents/#{paper.id}/#{paper.template.sections[0].id}", class: "btn-floating" %></td>
+        <td><%= link_to "<i class='material-icons'>edit</i>".html_safe, edit_paper_path(paper), class: "btn-floating" %></td>
         <td><%= link_to "<i class='material-icons'>delete</i>".html_safe, paper, method: :delete, data: { confirm: 'Excluir trabalho permanentemente?' }, class: "btn-floating red" %></td>
       </tr>
     <% end %>

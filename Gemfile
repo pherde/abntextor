@@ -39,6 +39,9 @@ gem 'tinymce-rails'
 # HTML2Latex 
 gem 'html2latex', :path => "../Html2latex"
 
+# Act as list
+gem 'acts_as_list'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

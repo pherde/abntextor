@@ -3,7 +3,7 @@
 <nav>
   <div class="nav-wrapper">
     <div class="col s12">
-      <%= link_to "Template: #{@sections[0].template.name}", templates_path, class: "breadcrumb" %>
+      <%= link_to "Template: #{@template.name}", templates_path, class: "breadcrumb" %>
       <a href="#!" class="breadcrumb">Seções</a>
     </div>
   </div>
@@ -35,7 +35,7 @@
         <td><%= section.position %></td>
         <td><%= link_to 'Campos', section_fields_path(section) %></td>
         <td><%= link_to "<i class='material-icons'>edit</i>".html_safe, edit_template_section_path(section.template, section),class: "btn-floating" %></td>
-        <td><%= link_to "<i class='material-icons'>edit</i>".html_safe, template_section_path(section.template, section), method: :delete, data: { confirm: 'Excluir seção permanentemente?' }, class: "btn-floating red" %></td>
+        <td><%= link_to "<i class='material-icons'>delete</i>".html_safe, template_section_path(section.template, section), method: :delete, data: { confirm: 'Excluir seção permanentemente?' }, class: "btn-floating red" %></td>
       </tr>
     <% end %>
   </tbody>

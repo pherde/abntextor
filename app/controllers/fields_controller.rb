@@ -1,10 +1,12 @@
 class FieldsController < ApplicationController
   before_action :set_field, only: [:show, :edit, :update, :destroy]
+  before_action :set_section, only: [:index, :new, :edit]
+  before_action :set_count, only: [:new, :edit]
 
   # GET /fields
   # GET /fields.json
   def index
-    @fields = Field.all
+    @fields = Field.from_section(@section.id)
   end
 
   # GET /fields/1
@@ -15,7 +17,7 @@ class FieldsController < ApplicationController
   # GET /fields/new
   def new
     @field = Field.new
-    @section = Section.find(params[:section_id])
+    @count = @count + 1
   end
 
   # GET /fields/1/edit
@@ -29,7 +31,7 @@ class FieldsController < ApplicationController
 
     respond_to do |format|
       if @field.save
-        format.html { redirect_to section_fields_path(@field.section), notice: 'Field was successfully created.' }
+        format.html { redirect_to section_fields_path(@field.section), notice: 'Campo criado com sucesso.' }
         format.json { render :show, status: :created, location: @field }
       else
         format.html { render :new }
@@ -43,7 +45,7 @@ class FieldsController < ApplicationController
   def update
     respond_to do |format|
       if @field.update(field_params)
-        format.html { redirect_to section_fields_path(@field.section), notice: 'Field was successfully updated.' }
+        format.html { redirect_to section_fields_path(@field.section), notice: 'Campo atualizado com sucesso.' }
         format.json { render :show, status: :ok, location: @field }
       else
         format.html { render :edit }
@@ -55,10 +57,13 @@ class FieldsController < ApplicationController
   # DELETE /fields/1
   # DELETE /fields/1.json
   def destroy
-    @field.destroy
-    respond_to do |format|
-      format.html { redirect_to section_fields_path(@field.section), notice: 'Field was successfully destroyed.' }
-      format.json { head :no_content }
+    if @field.destroy
+      respond_to do |format|
+        format.html { redirect_to section_fields_path(@field.section), notice: 'Campo excluído com sucesso.' }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to section_fields_path(@field.section), alert: 'Campo não pode ser excluída: existem trabalhos que usam esse template.'
     end
   end
 
@@ -71,5 +76,13 @@ class FieldsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def field_params
       params.require(:field).permit(:name, :label, :open_tag, :close_tag, :position, :section_id)
+    end
+
+    def set_section
+      @section = Section.find(params[:section_id])
+    end
+
+    def set_count
+      @count = @section.fields.count
     end
 end

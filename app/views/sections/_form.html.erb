@@ -30,7 +30,8 @@
     </div>
 
     <div class="field col s4">
-      <%= f.select(:position, [["Posição", 0],["1", 1],["2", 2]]) %>
+      <%= f.select(:position, (1..@count).map{ |c| ["#{c}", c] }) %>
+      <%= f.label :position, "Posição" %>
     </div>
   </div>
 

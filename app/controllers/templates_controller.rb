@@ -28,7 +28,7 @@ class TemplatesController < ApplicationController
 
     respond_to do |format|
       if @template.save
-        format.html { redirect_to @template, notice: 'Template was successfully created.' }
+        format.html { redirect_to @template, notice: 'Template criado com sucesso.' }
         format.json { render :show, status: :created, location: @template }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class TemplatesController < ApplicationController
   def update
     respond_to do |format|
       if @template.update(template_params)
-        format.html { redirect_to @template, notice: 'Template was successfully updated.' }
+        format.html { redirect_to @template, notice: 'Template atualizado com sucesso.' }
         format.json { render :show, status: :ok, location: @template }
       else
         format.html { render :edit }
@@ -54,10 +54,13 @@ class TemplatesController < ApplicationController
   # DELETE /templates/1
   # DELETE /templates/1.json
   def destroy
-    @template.destroy
-    respond_to do |format|
-      format.html { redirect_to templates_url, notice: 'Template was successfully destroyed.' }
-      format.json { head :no_content }
+    if @template.destroy
+      respond_to do |format|
+        format.html { redirect_to templates_url, notice: 'Template excluído com sucesso.' }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to templates_url, alert: 'Template não pode ser excluído: existem trabalhos que usam esse template.'
     end
   end
 
