@@ -17,14 +17,14 @@
     <% @papers.each do |paper| %>
       <tr>
         <td><%= paper.id %></td>
-        <td><%= link_to "#{paper.name}", "/contents/#{paper.id}/#{paper.template.sections[0].id}" %></td>
+        <td><%= link_to "#{paper.name}", "/trabalho/#{paper.hash_name}/#{paper.template.sections[0].id}" %></td>
         <td><%= paper.hash_name %></td>
         <td><%= paper.template.name %></td>
         <td><%= paper.created_at %></td>
         <td></td>
-        <td><%= link_to "<i class='material-icons'>picture_as_pdf</i>".html_safe, "/build/#{paper.id}", class: "btn-floating" %></td>
-        <td><%= link_to "<i class='material-icons'>edit</i>".html_safe, edit_paper_path(paper), class: "btn-floating" %></td>
-        <td><%= link_to "<i class='material-icons'>delete</i>".html_safe, paper, method: :delete, data: { confirm: 'Excluir trabalho permanentemente?' }, class: "btn-floating red" %></td>
+        <td><%= link_to "<i class='material-icons'>picture_as_pdf</i>".html_safe, "/pdf/#{paper.hash_name}", class: "btn-floating" %></td>
+        <td><%= link_to "<i class='material-icons'>edit</i>".html_safe, "/trabalho/#{paper.hash_name}", class: "btn-floating" %></td>
+        <td><%= link_to "<i class='material-icons'>delete</i>".html_safe, "/trabalho/#{paper.hash_name}", method: :delete, data: { confirm: 'Excluir trabalho permanentemente?' }, class: "btn-floating red" %></td>
       </tr>
     <% end %>
   </tbody>

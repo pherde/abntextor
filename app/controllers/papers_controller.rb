@@ -1,5 +1,5 @@
 class PapersController < ApplicationController
-  before_action :set_paper, only: [:show, :edit, :update, :destroy]
+  before_action :set_paper, only: [:show, :update]
   before_action :set_templates, only: [:new]
 
   # GET /papers
@@ -20,6 +20,7 @@ class PapersController < ApplicationController
 
   # GET /papers/1/edit
   def edit
+    @paper = Paper.from_hash_name(params[:hash_name])
   end
 
   # POST /papers
@@ -55,6 +56,7 @@ class PapersController < ApplicationController
   # DELETE /papers/1
   # DELETE /papers/1.json
   def destroy
+    @paper = Paper.from_hash_name(params[:hash_name])
     @paper.destroy
     respond_to do |format|
       format.html { redirect_to papers_url, notice: 'Trabalho excluído com sucesso.' }

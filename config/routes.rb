@@ -1,12 +1,17 @@
 Rails.application.routes.draw do
-  get 'build/build'
-
   root "papers#index"
   
-  get "/contents/:paper_id/:section_id", to: "contents#edit"
+  get 'build/build'
+
+  # User routes
+  get "/trabalho/:hash_name", to: "papers#edit"
+  delete "/trabalho/:hash_name", to: "papers#destroy"
+  get "/trabalho/:hash_name/:section_id", to: "contents#edit"
+  get "/pdf/:hash_name", to: "build#build"
+
+  # Contents path
   get 'contents/edit'
   post 'contents/update'
-  get "/build/:id", to: "build#build"
 
   resources :papers
   resources :templates do

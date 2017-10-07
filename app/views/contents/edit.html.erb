@@ -1,6 +1,6 @@
 <div class="col s2 left">
 	<% @paper.template.sections.each do |section| %>
-		<p><%= link_to "#{section.name}", "/contents/#{@paper.id}/#{section.id}" %></p>
+		<p><%= link_to "#{section.name}", "/trabalho/#{@paper.hash_name}/#{section.id}" %></p>
 	<% end %>
 </div>
 <div class="col s10 right">
