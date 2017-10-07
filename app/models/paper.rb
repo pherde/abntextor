@@ -8,6 +8,10 @@ class Paper < ApplicationRecord
 
   validates :hash_name, uniqueness: true
 
+  def self.from_user user_id
+  	where(user_id: user_id)
+  end
+
   before_validation(on: :create) do
   	self.hash_name = Digest::SHA1.hexdigest("#{user_id}-#{Time.now.to_i}-#{rand}")[1..8]
   end
