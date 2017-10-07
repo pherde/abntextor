@@ -14,6 +14,7 @@
       <th>Nome</th>
       <th>Descrição</th>
       <th>Disponível</th>
+      <th>Posição</th>
       <th colspan="4"><%= link_to "<i class='material-icons'>add</i>".html_safe, new_template_path, class: "btn-floating right" %></th>
     </tr>
   </thead>
@@ -25,6 +26,7 @@
         <td><%= template.name %></td>
         <td><%= template.description %></td>
         <td><span class="btn-floating <%= template.is_active ? 'green' : 'red' %>"></span></td>
+        <td><%= template.position %></td>
         <td><%= link_to "Seções", template_sections_path(template.id) %></td>
         <td><%= link_to "<i class='material-icons'>more</i>".html_safe, template, class: "btn-floating" %></td>
         <td><%= link_to "<i class='material-icons'>edit</i>".html_safe, edit_template_path(template), class: "btn-floating" %></td>

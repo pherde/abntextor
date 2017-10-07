@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20170820152433) do
     t.string   "name"
     t.string   "description"
     t.boolean  "is_active"
+    t.integer  "position"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

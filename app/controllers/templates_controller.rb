@@ -1,5 +1,6 @@
 class TemplatesController < ApplicationController
   before_action :set_template, only: [:show, :edit, :update, :destroy]
+  before_action :set_count, only: [:new, :edit]
 
   # GET /templates
   # GET /templates.json
@@ -15,6 +16,7 @@ class TemplatesController < ApplicationController
   # GET /templates/new
   def new
     @template = Template.new
+    @count = @count + 1
   end
 
   # GET /templates/1/edit
@@ -72,6 +74,9 @@ class TemplatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def template_params
-      params.require(:template).permit(:name, :description, :is_active)
+      params.require(:template).permit(:name, :description, :position,:is_active)
+    end
+    def set_count
+      @count = Template.all.count
     end
 end

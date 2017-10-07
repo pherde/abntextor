@@ -20,11 +20,17 @@
     <%= f.text_field :description %>
     <%= f.label :description, "Descrição" %>
   </div>
-
-  <div class="field">
+  <dev class="row">
+    
+  <div class="field col s6">
     <%= f.check_box :is_active %>
     <%= f.label :is_active, "Disponível" %>
   </div>
+  <div class="input-field col s6">
+      <%= f.select(:position, (1..@count).map{ |c| ["#{c}", c] }) %>
+      <%= f.label :position, "Posição" %>
+    </div>
+  </dev>
 
   <div class="actions">
     <%= f.submit template.new_record? ? "Criar template" : "Alterar template", class: "btn" %>
@@ -32,3 +38,8 @@
     <%= link_to 'Voltar', templates_path, class: "btn red" %>
   </div>
 <% end %>
+<script type="text/javascript">
+ $(document).ready(function() {
+    $('select').material_select();
+ });
+</script>

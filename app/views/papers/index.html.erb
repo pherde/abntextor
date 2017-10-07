@@ -5,6 +5,7 @@
     <tr>
       <th>ID</th>
       <th>Nome</th>
+      <th>Nome público</th>
       <th>Template</th>
       <th>Criado</th>
       <th>Última compilação</th>
@@ -17,6 +18,7 @@
       <tr>
         <td><%= paper.id %></td>
         <td><%= link_to "#{paper.name}", "/contents/#{paper.id}/#{paper.template.sections[0].id}" %></td>
+        <td><%= paper.hash_name %></td>
         <td><%= paper.template.name %></td>
         <td><%= paper.created_at %></td>
         <td></td>
