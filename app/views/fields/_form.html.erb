@@ -12,19 +12,24 @@
   <% end %>
 
   <%= f.hidden_field :section_id, value: section.id %>
-  <div class="input-field col s4">
-    <%= f.text_field :name %>
-    <%= f.label :name, "Nome" %>
-  </div>
 
-  <div class="input-field col s4">
-    <%= f.text_field :label %>
-    <%= f.label :label, "Label" %>
-  </div>
+  <div class="row">
+    
+    <div class="input-field col s4">
+      <%= f.text_field :name %>
+      <%= f.label :name, "Nome" %>
+    </div>
 
-  <div class=" input-field col s4">
-    <%= f.select(:position, (1..@count).map{ |c| ["#{c}",c] }) %>
-    <%= f.label :position, "Posição" %>
+    <div class="input-field col s4">
+      <%= f.text_field :label %>
+      <%= f.label :label, "Label" %>
+    </div>
+
+    <div class=" input-field col s4">
+      <%= f.select(:position, (1..@count).map{ |c| ["#{c}",c] }) %>
+      <%= f.label :position, "Posição" %>
+    </div>
+
   </div>
 
   <div class="input-field col s12">
@@ -37,6 +42,12 @@
     <%= f.label :close_tag, "Tag de fechamento" %>
   </div>
 
+  <div class="row">
+    <div class="field col s2">
+      <%= f.check_box :is_multivalue %>
+      <%= f.label :is_multivalue, "Multivalorado" %>
+    </div>
+  </div>
   <div class="actions">
     <%= f.submit field.new_record? ? "Criar campo" : "Alterar campo", class: "btn" %>
     <%= link_to 'Voltar', section_fields_path(section), class: "btn red" %>

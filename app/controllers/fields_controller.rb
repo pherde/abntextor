@@ -75,7 +75,7 @@ class FieldsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def field_params
-      params.require(:field).permit(:name, :label, :open_tag, :close_tag, :position, :section_id)
+      params.require(:field).permit(:name, :label, :open_tag, :close_tag, :position, :section_id, :is_multivalue)
     end
 
     def set_section

@@ -1,7 +1,7 @@
 class BuildController < ApplicationController
   def build
     @tex = ""
-    @paper = Paper.find(params[:id])
+    @paper = Paper.from_hash_name(params[:hash_name])
     @paper.template.sections.each do |section|
       section.fields.each do |field|
         content = Content.where("paper_id = #{@paper.id} and field_id = #{field.id}").first
