@@ -1,4 +1,5 @@
 class TemplatesController < ApplicationController
+  authorize_resource
   before_action :set_template, only: [:show, :edit, :update, :destroy]
   before_action :set_count, only: [:new, :edit]
 

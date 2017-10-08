@@ -13,7 +13,6 @@ class BuildController < ApplicationController
         system("pdflatex --interaction=nonstopmode -output-directory=public/tex #{arquivo}")
       end
     end
-    
-
+     authorize!(:build, @paper)
   end
 end

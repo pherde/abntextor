@@ -1,4 +1,5 @@
 class ContentsController < ApplicationController
+  authorize_resource
   def edit
   	@paper = Paper.from_hash_name(params[:hash_name])
   	@fields = Field.where("section_id = #{params[:section_id]}")

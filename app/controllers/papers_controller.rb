@@ -1,4 +1,5 @@
 class PapersController < ApplicationController
+  authorize_resource
   before_action :set_paper, only: [:show, :update]
   before_action :set_templates, only: [:new]
 

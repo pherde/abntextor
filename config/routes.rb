@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   delete "/trabalho/:hash_name", to: "papers#destroy"
   get "/trabalho/:hash_name/:section_id", to: "contents#edit"
   get "/pdf/:hash_name", to: "build#build"
+  get "/perfil", to: "users#profile"
 
   # Contents path
   get 'contents/edit'

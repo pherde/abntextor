@@ -1,4 +1,5 @@
 class FieldsController < ApplicationController
+  authorize_resource
   before_action :set_field, only: [:show, :edit, :update, :destroy]
   before_action :set_section, only: [:index, :new, :edit]
   before_action :set_count, only: [:new, :edit]
