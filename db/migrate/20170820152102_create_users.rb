@@ -4,8 +4,8 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :alias
       t.string :college
-      t.boolean :is_active
-      t.boolean :is_admin
+      t.boolean :is_active, default: true
+      t.boolean :is_admin, default: false
 
       t.timestamps
     end

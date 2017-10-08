@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
+  devise_for :users
   root "papers#index"
   
   get 'build/build'
 
   # User routes
+  get "/trabalhos", to: "papers#index"
   get "/trabalho/:hash_name", to: "papers#edit"
   delete "/trabalho/:hash_name", to: "papers#destroy"
   get "/trabalho/:hash_name/:section_id", to: "contents#edit"

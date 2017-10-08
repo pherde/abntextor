@@ -5,7 +5,7 @@ class PapersController < ApplicationController
   # GET /papers
   # GET /papers.json
   def index
-    @papers = Paper.from_user(@user.id)
+    @papers = Paper.from_user(current_user.id)
   end
 
   # GET /papers/1

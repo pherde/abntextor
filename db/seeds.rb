@@ -10,7 +10,10 @@
 		"name":"Admin",
 		"alias":"admin",
 		"is_active":true,
-		"is_admin":true
+		"is_admin":true,
+		"email":"admin@admin.com",
+		"password":'admin',
+		"password_confirmation":'admin'
 		})
 
 	
@@ -90,7 +93,7 @@
 	field4.section = section3
 	
 
-	user.save
+	user.save(:validate => false)
 	template1.save
 	section1.save
 	section2.save

@@ -24,7 +24,7 @@
   </div>
 
   <div class="field">
-    <%= f.hidden_field :user_id, value: @user.id, readonly: "readonly" %>
+    <%= f.hidden_field :user_id, value: current_user.id, readonly: "readonly" %>
   </div>
 
   <div class="actions col s12 right">
