@@ -1,8 +1,17 @@
 toolbar:
-  - styleselect | bold italic | undo redo
-  - image | link
-  - novo-btn latex
+  - cut copy paste | undo redo | searchreplace | fullscreen | cap1 cap2 cap3 cap4
+  - bold italic underline strikethrough superscript subscript | numlist bullist | image link | latex | code
+  
 plugins:
   - image
   - link
   - botoes
+  - lists
+  - fullscreen
+  - searchreplace
+  - wordcount
+  - paste
+  - code
+ 
+
+

@@ -1,7 +1,14 @@
 <div class="col s2 left">
+<script>
+	function teste(a){
+		console.log(a);
+		document.getElementById("capitulos").innerHTML = a;
+	}
+</script>
 	<% @paper.template.sections.each do |section| %>
 		<p><%= link_to "#{section.name}", "/trabalho/#{@paper.hash_name}/#{section.id}" %></p>
 	<% end %>
+	<div id="capitulos">capitulos listados</div>
 </div>
 <div class="col s10 right">
 <%= form_tag(controller: "contents", action: "update", method: "post") do %>
@@ -19,4 +26,5 @@
     <%= link_to "Voltar", papers_path, class: "btn red" %>
   </div>
 <% end %>
+
 </div>

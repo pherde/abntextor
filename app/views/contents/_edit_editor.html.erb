@@ -2,5 +2,5 @@
  	<%= hidden_field_tag("paper_id[]", "#{content.paper.id}", :multiple => true) %>
   	<%= hidden_field_tag("field_id[]", "#{content.field.id}", :multiple => true) %>
 	<%= text_area_tag("content[]", "#{content.content}", :class => "tinymce", :rows => 30, :multiple => true) %>
-	<%= tinymce %>
+	<%= tinymce :branding => false, :elementpath => false, :menubar => false, :min_height => 600 %>
   </div>
