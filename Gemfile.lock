@@ -1,5 +1,5 @@
 PATH
-  remote: /vagrant/Html2latex
+  remote: ../Html2latex
   specs:
     html2latex (0.1.0)
 
