@@ -18,6 +18,5 @@
 //= require materialize-sprockets
 
 $(document).on('turbolinks:load' ,function() {
-	console.log('Pagina carregou')
 	$('select').material_select();
 });

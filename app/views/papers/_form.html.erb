@@ -32,3 +32,25 @@
     <%= link_to 'Voltar', papers_path, class: "btn red" %>
   </div>
 <% end %>
+
+  <div id='template_description'>
+  
+  </div>
+
+<%= javascript_tag do %>
+$(document).on('turbolinks:load' ,function() {
+	var templates = [ 
+		{description: "Template 1"},
+		{description: "Template 2"} 
+	];
+
+        $('div#template_description').html(templates[0].description);
+	$('select').on('change', function(){
+		var i = $('option:selected').index();
+		$('div#template_description').html(templates[i].description);
+	});
+})
+;
+<% end %>
+
+
