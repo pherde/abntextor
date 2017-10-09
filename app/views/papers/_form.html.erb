@@ -39,9 +39,12 @@
 
 <%= javascript_tag do %>
 $(document).on('turbolinks:load' ,function() {
-	var templates = [ 
-		{description: "Template 1"},
-		{description: "Template 2"} 
+	var templates = [
+
+	<% @templates.each do |index| %>
+	<%= "{description: '#{index.description}'},".html_safe %>
+	<% end %>	
+	{description: "End"} 
 	];
 
         $('div#template_description').html(templates[0].description);
