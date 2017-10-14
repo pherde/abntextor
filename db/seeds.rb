@@ -82,7 +82,7 @@
 	field4 = Field.new({
 		:name => "Conteúdo",
 		:label => "Conteúdo",
-		:open_tag => "\\documentclass{article}\\begin{document}\\maketitle",
+		:open_tag => "\\begin{document}\\maketitle",
 		:close_tag => "\\end{document}",
 		:position => "1"
 		})
