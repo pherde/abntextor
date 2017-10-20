@@ -31,7 +31,7 @@ class TemplatesController < ApplicationController
 
     respond_to do |format|
       if @template.save
-        format.html { redirect_to @template, notice: 'Template criado com sucesso.' }
+        format.html { redirect_to session.delete(:referer), notice: 'Template criado com sucesso.' }
         format.json { render :show, status: :created, location: @template }
       else
         format.html { render :new }
@@ -45,7 +45,7 @@ class TemplatesController < ApplicationController
   def update
     respond_to do |format|
       if @template.update(template_params)
-        format.html { redirect_to @template, notice: 'Template atualizado com sucesso.' }
+        format.html { redirect_to session.delete(:referer), notice: 'Template atualizado com sucesso.' }
         format.json { render :show, status: :ok, location: @template }
       else
         format.html { render :edit }

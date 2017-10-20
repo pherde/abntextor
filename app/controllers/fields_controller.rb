@@ -32,7 +32,7 @@ class FieldsController < ApplicationController
 
     respond_to do |format|
       if @field.save
-        format.html { redirect_to section_fields_path(@field.section), notice: 'Campo criado com sucesso.' }
+        format.html { redirect_to session.delete(:referer), notice: 'Campo criado com sucesso.' }
         format.json { render :show, status: :created, location: @field }
       else
         format.html { render :new }
@@ -46,7 +46,7 @@ class FieldsController < ApplicationController
   def update
     respond_to do |format|
       if @field.update(field_params)
-        format.html { redirect_to section_fields_path(@field.section), notice: 'Campo atualizado com sucesso.' }
+        format.html { redirect_to session.delete(:referer), notice: 'Campo atualizado com sucesso.' }
         format.json { render :show, status: :ok, location: @field }
       else
         format.html { render :edit }

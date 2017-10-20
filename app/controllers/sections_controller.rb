@@ -32,7 +32,7 @@ class SectionsController < ApplicationController
 
     respond_to do |format|
       if @section.save
-        format.html { redirect_to template_sections_path(@section.template), notice: 'Seção criada com sucesso.' }
+        format.html { redirect_to session.delete(:referer), notice: 'Seção criada com sucesso.' }
         format.json { render :show, status: :created, location: @section }
       else
         format.html { render :new }
@@ -46,7 +46,7 @@ class SectionsController < ApplicationController
   def update
     respond_to do |format|
       if @section.update(section_params)
-        format.html { redirect_to template_sections_path(@section.template), notice: 'Seção atualizada com sucesso.' }
+        format.html { redirect_to session.delete(:referer), notice: 'Seção atualizada com sucesso.' }
         format.json { render :show, status: :ok, location: @section }
       else
         format.html { render :edit }
