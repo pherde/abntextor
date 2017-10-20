@@ -6,7 +6,7 @@ class TemplatesController < ApplicationController
   # GET /templates
   # GET /templates.json
   def index
-    @templates = Template.all
+    @templates = Template.all.paginate(:page => params[:page], :per_page => 10)
   end
 
   # GET /templates/1

@@ -7,7 +7,7 @@ class FieldsController < ApplicationController
   # GET /fields
   # GET /fields.json
   def index
-    @fields = Field.from_section(@section.id)
+    @fields = Field.from_section(@section.id).paginate(:page => params[:page], :per_page => 10)
   end
 
   # GET /fields/1

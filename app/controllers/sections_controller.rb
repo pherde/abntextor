@@ -7,7 +7,7 @@ class SectionsController < ApplicationController
   # GET /sections
   # GET /sections.json
   def index
-    @sections = Section.from_template(@template.id)
+    @sections = Section.from_template(@template.id).paginate(:page => params[:page], :per_page => 10)
   end
 
   # GET /sections/1

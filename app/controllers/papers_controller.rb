@@ -6,7 +6,7 @@ class PapersController < ApplicationController
   # GET /papers
   # GET /papers.json
   def index
-    @papers = Paper.from_user(current_user.id)
+    @papers = Paper.from_user(current_user.id).paginate(:page => params[:page], :per_page => 10)
   end
 
   # GET /papers/1
