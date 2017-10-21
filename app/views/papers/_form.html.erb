@@ -31,9 +31,13 @@
   </div>
 <% end %>
 
-  <div id='template_description'>
-  
+  <div class="row">
+    <h5>Descrição do template</h5>
+    <div id='template_description'>
+    
+    </div>
   </div>
+
 
 <%= javascript_tag do %>
 $(document).on('turbolinks:load' ,function() {
@@ -43,7 +47,7 @@ $(document).on('turbolinks:load' ,function() {
 	<%= "{description: '#{index.description}'},".html_safe %>
 	<% end %>	
   <% end %> 
-	{description: "End"} 
+	{description: " "} 
 	];
 
         $('div#template_description').html(templates[0].description);

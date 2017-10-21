@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171008115700) do
+ActiveRecord::Schema.define(version: 20171021141131) do
 
   create_table "contents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "paper_id"
@@ -40,7 +40,6 @@ ActiveRecord::Schema.define(version: 20171008115700) do
     t.string   "hash_name"
     t.integer  "template_id"
     t.integer  "user_id"
-    t.datetime "last_build"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["hash_name"], name: "index_papers_on_hash_name", unique: true, using: :btree

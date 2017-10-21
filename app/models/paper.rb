@@ -3,6 +3,8 @@ class Paper < ApplicationRecord
   belongs_to :template
   belongs_to :user
 
+  default_scope { order(updated_at: :desc) }
+
   has_many :contents
   has_many :fields, through: :contents, dependent: :destroy
 
@@ -23,4 +25,5 @@ class Paper < ApplicationRecord
   before_validation(on: :create) do
   	self.hash_name = Digest::SHA1.hexdigest("#{user_id}-#{Time.now.to_i}-#{rand}")[1..8]
   end
+
 end

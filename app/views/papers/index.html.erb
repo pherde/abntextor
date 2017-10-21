@@ -8,7 +8,7 @@
       <th>Nome público</th>
       <th>Template</th>
       <th>Criado</th>
-      <th>Última compilação</th>
+      <th>Última alteração</th>
       <th colspan="3"><%= link_to "<i class='material-icons'>add</i>".html_safe, new_paper_path, class: "btn-floating right" %></th>
     </tr>
   </thead>
@@ -21,7 +21,7 @@
         <td><%= paper.hash_name %></td>
         <td><%= paper.template.name %></td>
         <td><%= paper.created_at %></td>
-        <td></td>
+        <td><%= paper.updated_at %></td>
         <td><%= link_to "<i class='material-icons'>picture_as_pdf</i>".html_safe, "/pdf/#{paper.hash_name}", class: "btn-floating" %></td>
         <td><%= link_to "<i class='material-icons'>edit</i>".html_safe, "/trabalho/#{paper.hash_name}", class: "btn-floating" %></td>
         <td><%= link_to "<i class='material-icons'>delete</i>".html_safe, "/trabalho/#{paper.hash_name}", method: :delete, data: { confirm: 'Excluir trabalho permanentemente?' }, class: "btn-floating red" %></td>

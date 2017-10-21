@@ -26,7 +26,8 @@ class ContentsController < ApplicationController
   	contents.zip(papers, fields) do |c, p, f|
   		content = Content.where("paper_id = #{p} and field_id = #{f}").first
   		content.update({:paper_id => p, :field_id => f, :content => c})
+      
+      content.paper.touch # Update paper
   	end
   end
-
 end

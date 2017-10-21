@@ -22,6 +22,7 @@ class BuildController < ApplicationController
       f.write(@tex)
     end
     system("pdflatex --interaction=nonstopmode -output-directory=public/tex #{arquivo}")
+     @paper.touch # Update paper
      authorize!(:build, @paper)
   end
 end
