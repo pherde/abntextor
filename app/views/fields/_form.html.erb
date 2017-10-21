@@ -1,10 +1,8 @@
 <%= form_for([section, field]) do |f| %>
   <% if field.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(field.errors.count, "error") %> prohibited this field from being saved:</h2>
-
       <ul>
-      <% field.errors.full_messages.each do |message| %>
+      <% field.errors.each do |attr, message| %>
         <li><%= message %></li>
       <% end %>
       </ul>

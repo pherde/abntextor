@@ -11,5 +11,11 @@ module App
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+
+    # Default field_with_errors wrapper broke materialize input styles
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| 
+	  #"<div class=\"input-field field_with_errors\">#{html_tag}</div>".html_safe
+	  html_tag
+	}
   end
 end

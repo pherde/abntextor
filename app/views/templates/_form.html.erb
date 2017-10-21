@@ -1,10 +1,8 @@
 <%= form_for(template) do |f| %>
   <% if template.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(template.errors.count, "error") %> prohibited this template from being saved:</h2>
-
       <ul>
-      <% template.errors.full_messages.each do |message| %>
+      <% template.errors.each do |attr,message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -20,7 +18,7 @@
     <%= f.text_field :description %>
     <%= f.label :description, "Descrição" %>
   </div>
-  <dev class="row">
+  <div class="row">
     
   <div class="field col s6">
     <%= f.check_box :is_active %>
@@ -30,7 +28,7 @@
       <%= f.select(:position, (1..@count).map{ |c| ["#{c}", c] }) %>
       <%= f.label :position, "Posição" %>
     </div>
-  </dev>
+  </div>
 
   <div class="actions">
     <%= f.submit template.new_record? ? "Criar template" : "Alterar template", class: "btn" %>

@@ -1,10 +1,8 @@
 <%= form_for([template, section]) do |f| %>
   <% if section.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(section.errors.count, "error") %> prohibited this section from being saved:</h2>
-
       <ul>
-      <% section.errors.full_messages.each do |message| %>
+      <% section.errors.each do |attr, message| %>
         <li><%= message %></li>
       <% end %>
       </ul>

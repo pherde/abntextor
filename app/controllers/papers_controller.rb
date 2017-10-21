@@ -1,7 +1,7 @@
 class PapersController < ApplicationController
   authorize_resource
   before_action :set_paper, only: [:show, :update]
-  before_action :set_templates, only: [:new]
+  before_action :set_templates, only: [:new, :create, :edit]
 
   # GET /papers
   # GET /papers.json
@@ -31,7 +31,7 @@ class PapersController < ApplicationController
 
     respond_to do |format|
       if @paper.save
-        format.html { redirect_to papers_path, notice: 'Trabalho criado com sucesso.' }
+        format.html { redirect_to "/trabalhos", notice: 'Trabalho criado com sucesso.' }
         format.json { render :show, status: :created, location: @paper }
       else
         format.html { render :new }
@@ -45,7 +45,7 @@ class PapersController < ApplicationController
   def update
     respond_to do |format|
       if @paper.update(paper_params)
-        format.html { redirect_to papers_path, notice: 'Trabalho alterado com sucesso.' }
+        format.html { redirect_to "/trabalhos", notice: 'Trabalho alterado com sucesso.' }
         format.json { render :show, status: :ok, location: @paper }
       else
         format.html { render :edit }

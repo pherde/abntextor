@@ -1,10 +1,8 @@
 <%= form_for(paper) do |f| %>
   <% if paper.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(paper.errors.count, "error") %> prohibited this paper from being saved:</h2>
-
       <ul>
-      <% paper.errors.full_messages.each do |message| %>
+      <% paper.errors.each do |attr, message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -40,10 +38,11 @@
 <%= javascript_tag do %>
 $(document).on('turbolinks:load' ,function() {
 	var templates = [
-
+  <% if @templates %>
 	<% @templates.each do |index| %>
 	<%= "{description: '#{index.description}'},".html_safe %>
 	<% end %>	
+  <% end %> 
 	{description: "End"} 
 	];
 

@@ -6,7 +6,11 @@ class Paper < ApplicationRecord
   has_many :contents
   has_many :fields, through: :contents, dependent: :destroy
 
-  validates :hash_name, uniqueness: true
+  validates :name, presence: { message: "Nome do trabalho é obrigatório" }
+  validates :name, uniqueness: {scope: :user_id, message: "Já existe um trabalho com esse nome" } # User scope
+  validates :user_id, presence: { message: "Não foi possível identificar o usuário logado" }
+  validates :template_id, presence: { message: "Não foi possível identificar o template escolhido" }
+  validates :hash_name, uniqueness: { message: "Erro ao gerar nome público" }
 
   def self.from_user user_id
   	where(user_id: user_id)

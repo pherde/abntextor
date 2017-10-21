@@ -1,7 +1,7 @@
 class TemplatesController < ApplicationController
   authorize_resource
   before_action :set_template, only: [:show, :edit, :update, :destroy]
-  before_action :set_count, only: [:new, :edit]
+  before_action :set_count, only: [:new, :create, :edit, :update]
 
   # GET /templates
   # GET /templates.json
@@ -27,6 +27,7 @@ class TemplatesController < ApplicationController
   # POST /templates
   # POST /templates.json
   def create
+    @count = @count + 1
     @template = Template.new(template_params)
 
     respond_to do |format|

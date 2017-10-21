@@ -1,8 +1,8 @@
 class FieldsController < ApplicationController
   authorize_resource
   before_action :set_field, only: [:show, :edit, :update, :destroy]
-  before_action :set_section, only: [:index, :new, :edit]
-  before_action :set_count, only: [:new, :edit]
+  before_action :set_section, only: [:index, :new, :edit, :create, :update]
+  before_action :set_count, only: [:new, :edit, :create, :update]
 
   # GET /fields
   # GET /fields.json
@@ -28,6 +28,7 @@ class FieldsController < ApplicationController
   # POST /fields
   # POST /fields.json
   def create
+    @count = @count + 1
     @field = Field.new(field_params)
 
     respond_to do |format|

@@ -1,8 +1,8 @@
 class SectionsController < ApplicationController
   authorize_resource
   before_action :set_section, only: [:show, :edit, :update, :destroy]
-  before_action :set_template, only: [:index, :new, :edit]
-  before_action :set_count, only: [:new, :edit]
+  before_action :set_template, only: [:index, :new, :create, :edit, :update]
+  before_action :set_count, only: [:new, :create, :edit, :update]
 
   # GET /sections
   # GET /sections.json
@@ -28,6 +28,7 @@ class SectionsController < ApplicationController
   # POST /sections
   # POST /sections.json
   def create
+    @count = @count + 1
     @section = Section.new(section_params)
 
     respond_to do |format|

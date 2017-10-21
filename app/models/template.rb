@@ -3,6 +3,11 @@ class Template < ApplicationRecord
 	has_many :sections, dependent: :destroy
 	default_scope { order(position: :asc) }
 
+	validates :name, presence: { message: "Nome do template é obrigatório" }
+	validates :name, uniqueness: { message: "Já existe um template com o nome escolhido" }
+	validates :description, presence: { message: "Descrição do template é obrigatória" }
+	validates :position, presence: { message: "Não foi possível identificar a posição do template" }
+
     acts_as_list
 	def self.active
 		where("is_active", true)
