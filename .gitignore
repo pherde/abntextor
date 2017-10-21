@@ -1,3 +1,4 @@
 tmp/cache/
 log/
 public/tex/*
+.idea/
