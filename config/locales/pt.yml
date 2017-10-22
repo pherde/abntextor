@@ -24,3 +24,12 @@ pt:
   will_paginate:
     previous_label: "Anterior"
     next_label: "Próxima"
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "Preencha o e-mail"
+            password:
+              blank: "Preencha a senha"
