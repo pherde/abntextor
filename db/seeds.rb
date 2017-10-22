@@ -94,11 +94,12 @@
 	
 
 	user.save(:validate => false)
-	template1.save
-	section1.save
-	section2.save
-	section3.save
-	field1.save
-	field2.save
-	field3.save
-	field4.save
+	template1.save(:validate => false)
+	template2.save(:validate => false)
+	section1.save(:validate => false)
+	section2.save(:validate => false)
+	section3.save(:validate => false)
+	field1.save(:validate => false)
+	field2.save(:validate => false)
+	field3.save(:validate => false)
+	field4.save(:validate => false)
