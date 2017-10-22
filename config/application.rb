@@ -14,8 +14,11 @@ module App
 
     # Default field_with_errors wrapper broke materialize input styles
     config.action_view.field_error_proc = Proc.new { |html_tag, instance| 
-	  #"<div class=\"input-field field_with_errors\">#{html_tag}</div>".html_safe
-	  html_tag
-	}
+  	  #"<div class=\"input-field field_with_errors\">#{html_tag}</div>".html_safe
+  	  html_tag
+  	}
+
+    I18n.available_locales = [:pt]
+    I18n.default_locale = :pt
   end
 end
