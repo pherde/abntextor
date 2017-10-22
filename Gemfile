@@ -34,7 +34,7 @@ gem 'jbuilder', '~> 2.5'
 
 # Use TinyMCE to standart text editor
 # See more in https://github.com/spohlenz/tinymce-rails
-gem 'tinymce-rails'
+gem 'tinymce-rails', '4.7.1', :git => 'https://github.com/pherde/tinymce-rails.git'
 
 # HTML2Latex 
 gem 'html2latex', :path => "../Html2latex"

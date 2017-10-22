@@ -1,5 +1,5 @@
 toolbar:
-  - cut copy paste | undo redo | searchreplace | fullscreen | cap1 cap2 cap3 cap4
+  - cut copy paste | undo redo | searchreplace | fullscreen |  formatselectbr
   - bold italic underline strikethrough superscript subscript | numlist bullist | image link | latex | code
   
 plugins:
