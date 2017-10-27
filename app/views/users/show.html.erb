@@ -39,7 +39,7 @@
       <th>Nome</th>
       <th>Template</th>
       <th>Criado</th>
-      <th>Última compilação</th>
+      <th>Última alteração</th>
       <th>Usuário</th>
     </tr>
   </thead>
@@ -51,7 +51,7 @@
         <td><%= paper.name %></td>
         <td><%= paper.template.name %></td>
         <td><%= paper.created_at %></td>
-        <td></td>
+        <td><%= paper.updated_at %></td>
         <td><%= paper.user.name %></td>
       </tr>
     <% end %>
