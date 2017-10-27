@@ -31,5 +31,9 @@ pt:
           attributes:
             email:
               blank: "Preencha o e-mail"
+              taken: "E-mail já cadastrado. Utilize a recuperação de senha"
             password:
               blank: "Preencha a senha"
+              too_short: "A senha deve ter no mínimo 6 caracteres"
+            password_confirmation:
+              confirmation: "Senha e confirmação de senha não são iguais"
