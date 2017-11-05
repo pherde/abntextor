@@ -15,4 +15,14 @@ class Template < ApplicationRecord
 
 	before_destroy { |t| throw :abort if t.papers.count > 0  }
 
+	def initial_section
+		s = sections[0]
+		self.sections.each do |section|
+			if section.is_editable 
+				s = section
+				break
+			end
+		end
+		return s
+	end
 end

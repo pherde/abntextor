@@ -17,7 +17,7 @@
     <% @papers.each do |paper| %>
       <tr>
         <td><%= paper.id %></td>
-        <td><%= link_to "#{paper.name}", "/trabalho/#{paper.hash_name}/#{paper.template.sections[0].id}" %></td>
+        <td><%= link_to "#{paper.name}", "/trabalho/#{paper.hash_name}/#{paper.template.initial_section.id}" %></td>
         <td><%= paper.hash_name %></td>
         <td><%= paper.template.name %></td>
         <td><%= paper.created_at %></td>

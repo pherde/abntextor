@@ -15,7 +15,6 @@ class Field < ApplicationRecord
   validates :name, uniqueness: {scope: :section_id, message: "Já existe um campo com esse nome para essa seção" }
   validates :label, uniqueness: {scope: :section_id, message: "Já existe um campo com esse label para essa seção" }
   validates :open_tag, uniqueness: {scope: :section_id, message: "Já existe um campo com essa tag de abertura para essa seção" }
-  validates :close_tag, uniqueness: {scope: :section_id, message: "Já existe um campo com essa tag de fechamento para essa seção" }
 
   validates :section_id, presence: { message: "Não foi possível identificar a seção do campo" }
   validates :position, presence: { message: "Não foi possível identificar a posição do campo" }

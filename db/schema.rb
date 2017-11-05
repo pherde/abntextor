@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171021141131) do
+ActiveRecord::Schema.define(version: 20171105202422) do
 
   create_table "contents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "paper_id"
@@ -25,13 +25,13 @@ ActiveRecord::Schema.define(version: 20171021141131) do
   create_table "fields", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "label"
-    t.string   "open_tag"
-    t.string   "close_tag"
+    t.text     "open_tag",      limit: 65535
+    t.text     "close_tag",     limit: 65535
     t.boolean  "is_multivalue"
     t.integer  "position"
     t.integer  "section_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.index ["section_id"], name: "index_fields_on_section_id", using: :btree
   end
 
