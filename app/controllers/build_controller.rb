@@ -17,12 +17,13 @@ class BuildController < ApplicationController
         end
       end
     end
-    arquivo = "public/tex/#{@paper.id}.tex"
+    arquivo = "public/pdf/#{@paper.hash_name}.tex"
     File.open(arquivo, "w") do |f|
       f.write(@tex)
     end
-    system("pdflatex --interaction=nonstopmode -output-directory=public/tex #{arquivo}")
+    system("pdflatex --interaction=nonstopmode -output-directory=public/pdf #{arquivo}")
      @paper.touch # Update paper
+     redirect_to "/pdf/#{@paper.hash_name}.pdf"
      authorize!(:build, @paper)
   end
 end

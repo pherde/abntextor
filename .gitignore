@@ -1,4 +1,8 @@
 tmp/cache/
 log/
-public/tex/*
+public/pdf/*.aux
+public/pdf/*.idx
+public/pdf/*.log
+public/pdf/*.pdf
+public/pdf/*.tex
 .idea/
