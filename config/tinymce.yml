@@ -1,6 +1,6 @@
 toolbar:
-  - cut copy paste | undo redo | searchreplace | fullscreen |  formatselectbr
-  - bold italic underline strikethrough superscript subscript | numlist bullist | image link | latex | code
+  - cut copy paste | undo redo | searchreplace | fullscreen |  formatselectbr 
+  - bold italic underline strikethrough superscript subscript | numlist bullist | imagem link | latex | code
   
 plugins:
   - image

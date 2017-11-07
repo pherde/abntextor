@@ -1,11 +1,13 @@
 tinyMCE.PluginManager.add('botoes', function(editor, url) {
   
-   editor.addButton("novo-btn", {
-        tooltip: "Botão customizado",
-        text: "Botão Novo",
+   editor.addButton("imagem", {
+        tooltip: "Inserir imagem usando Latex",
+        icon: "image",
+        //image: "http://p.yusukekamiyamane.com/icons/search/fugue/icons/calendar-blue.png",
         onClick: function () {
             x = editor.selection.getContent();
-            editor.insertContent('&nbsp;<b>Texto inserido pelo botão!</b>&nbsp;'+x);
+            codigo = "<pre style='background: #66b7ff;'>\\begin{figure}[htb]<br />\\immediate \\write18{wget https://endereco_da_sua_imagem.com/nome_imagem.png -O nome_imagem_1.jpg}<br />\\caption{Título da Imagem}<br />\\begin{center}<br />\\includegraphics[width=10cm]{nome_imagem_1}<br />\\end{center}<br />\\legend{Fonte: }<br />\\end{figure}</pre>";
+            editor.insertContent(codigo);
             teste(x);
         
       },
@@ -24,7 +26,9 @@ tinyMCE.PluginManager.add('botoes', function(editor, url) {
         text: "Latex",
         onClick: function () {
           editor.focus();
-          editor.selection.setContent('<latex>/latex{' + editor.selection.getContent() + '}</latex>');
+          x = editor.selection.getContent();
+          codigo = "<pre style='background: #66b7ff;'> <br />"+ x +"<br /></pre>";
+          editor.selection.setContent(codigo);
       },
          onPostRender: function() {
              var self = this, setup = function() {
