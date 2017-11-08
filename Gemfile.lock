@@ -5,11 +5,6 @@ GIT
     tinymce-rails (4.7.1)
       railties (>= 3.1.1)
 
-PATH
-  remote: ../Html2latex
-  specs:
-    html2latex (0.9)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -78,6 +73,7 @@ GEM
     ffi (1.9.18)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    html2latex (1.0)
     i18n (0.9.1)
       concurrent-ruby (~> 1.0)
     jbuilder (2.7.0)
@@ -98,7 +94,7 @@ GEM
     materialize-sass (0.100.2)
       sass (~> 3.3)
     method_source (0.9.0)
-    mini_mime (0.1.4)
+    mini_mime (1.0.0)
     mini_portile2 (2.3.0)
     minitest (5.10.3)
     multi_json (1.12.2)
@@ -198,7 +194,7 @@ DEPENDENCIES
   cancancan (~> 2.0)
   coffee-rails (~> 4.2)
   devise
-  html2latex!
+  html2latex
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)

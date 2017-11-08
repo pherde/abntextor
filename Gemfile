@@ -37,7 +37,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'tinymce-rails', '4.7.1', :git => 'https://github.com/pherde/tinymce-rails.git'
 
 # HTML2Latex 
-gem 'html2latex', :path => "../Html2latex"
+gem 'html2latex'
 
 # Act as list
 gem 'acts_as_list'
