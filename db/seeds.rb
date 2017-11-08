@@ -1,105 +1,62 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+User.new({"name":"Admin","alias":"admin","is_active":true,"is_admin":true,"email":"admin@admin.com","password":'admin',"password_confirmation":'admin'}).save(validate: false)
 
-	user = User.new({
-		"name":"Admin",
-		"alias":"admin",
-		"is_active":true,
-		"is_admin":true,
-		"email":"admin@admin.com",
-		"password":'admin',
-		"password_confirmation":'admin'
-		})
-
-	
-
-	template1 = Template.new({
-		"name":"Em branco",
-		"description":"Template básico, sem elementos de título",
-		"is_active":true
-		})
-
-	template2 = Template.new({
-		"name":"Básico",
-		"description":"Template básico, com título e autor",
-		"is_active":true
-		})
-
-	section1 = Section.new({
-		"name":"Conteúdo",
-		"is_editable":true,
-		"is_wysiwyg":true,
-		"position":1
-		})
-
-	section2 = Section.new({
-		"name":"Cabeçalho",
-		"is_editable":true,
-		"is_wysiwyg":false,
-		"position":1
-		})
-
-	section3 = Section.new({
-		"name":"Conteúdo",
-		"is_editable":true,
-		"is_wysiwyg":true,
-		"position":2
-		})
-
-	section1.template = template1
-	section2.template = template2
-	section3.template = template2
-
-	field1 = Field.new({
-		:name => "Conteúdo",
-		:label => "Conteúdo",
-		:open_tag => "\\documentclass{article}\\begin{document}",
-		:close_tag => "\\end{document}",
-		:position => "1"
-		})
-
-	field2 = Field.new({
-		:name => "Título",
-		:label => "Título",
-		:open_tag => "\\documentclass{article} \\usepackage[utf8]{inputenc} \\title{",
-		:close_tag => "}",
-		:position => "1"
-		})
-	field3 = Field.new({
-		:name => "Autor",
-		:label => "Autores",
-		:open_tag => "\\author{",
-		:close_tag => "}",
-		:position => "2",
-		:is_multivalue => true
-	 	})
-
-	field4 = Field.new({
-		:name => "Conteúdo",
-		:label => "Conteúdo",
-		:open_tag => "\\begin{document}\\maketitle",
-		:close_tag => "\\end{document}",
-		:position => "1"
-		})
-
-	field1.section = section1
-	field2.section = section2
-	field3.section = section2
-	field4.section = section3
-	
-
-	user.save(:validate => false)
-	template1.save(:validate => false)
-	template2.save(:validate => false)
-	section1.save(:validate => false)
-	section2.save(:validate => false)
-	section3.save(:validate => false)
-	field1.save(:validate => false)
-	field2.save(:validate => false)
-	field3.save(:validate => false)
-	field4.save(:validate => false)
+  Template.new({id: 3, name: "Artigo padrão", description: "Artigo completo, com resumo, abstract, introdução e conclusão", is_active: true, position: 1, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Template.new({id: 1, name: "Em branco", description: "Template básico, sem elementos de título", is_active: true, position: 2, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Template.new({id: 2, name: "Básico", description: "Template básico, com título, autor e data", is_active: true, position: 3, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Section.new({id: 1, name: "Conteúdo", template_id: 1, is_editable: true, is_wysiwyg: true, position: 1, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Section.new({id: 2, name: "Cabeçalho", template_id: 2, is_editable: true, is_wysiwyg: false, position: 1, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Section.new({id: 4, name: "Abertura e pacotes", template_id: 3, is_editable: false, is_wysiwyg: false, position: 1, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Section.new({id: 3, name: "Conteúdo", template_id: 2, is_editable: true, is_wysiwyg: true, position: 2, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Section.new({id: 5, name: "Pretextual", template_id: 3, is_editable: true, is_wysiwyg: false, position: 2, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Section.new({id: 6, name: "Layout", template_id: 3, is_editable: false, is_wysiwyg: false, position: 3, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Section.new({id: 7, name: "Resumo", template_id: 3, is_editable: true, is_wysiwyg: true, position: 4, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Section.new({id: 8, name: "Abstract", template_id: 3, is_editable: true, is_wysiwyg: true, position: 5, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Section.new({id: 9, name: "Introdução", template_id: 3, is_editable: true, is_wysiwyg: true, position: 6, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Section.new({id: 10, name: "Conteúdo", template_id: 3, is_editable: true, is_wysiwyg: true, position: 7, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Section.new({id: 11, name: "Considerações finais", template_id: 3, is_editable: true, is_wysiwyg: true, position: 8, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Field.new({id: 1, name: "Conteúdo", label: "Conteúdo", open_tag: "\\documentclass{article}\\begin{document}", close_tag: "\\end{document}", is_multivalue: nil, position: 1, section_id: 1, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Field.new({id: 2, name: "Título", label: "Título", open_tag: "\\documentclass{article} \\usepackage[utf8]{inputenc} \\title{", close_tag: "}", is_multivalue: nil, position: 1, section_id: 2, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Field.new({id: 4, name: "Conteúdo", label: "Conteúdo", open_tag: "\\begin{document}\\maketitle", close_tag: "\\end{document}", is_multivalue: nil, position: 1, section_id: 3, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Field.new({id: 6, name: "Abertura", label: "Abertura", open_tag: "\\documentclass[article,11pt,oneside,a4paper,english,brazil,sumario=tradicional]", close_tag: "{abntex2}", is_multivalue: false, position: 1, section_id: 4, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Field.new({id: 19, name: "Título", label: "Título", open_tag: "\\titulo{", close_tag: "}", is_multivalue: false, position: 1, section_id: 5, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Field.new({id: 23, name: "Blue", label: "Blue", open_tag: "\\definecolor{blue}{RGB}{41,5,195}", close_tag: "\\makeatletter", is_multivalue: false, position: 1, section_id: 6, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Field.new({id: 30, name: "Resumo", label: "Resumo", open_tag: "\\begin{resumoumacoluna}", close_tag: "\\vspace{\\onelineskip} \\noindent \\end{resumoumacoluna}", is_multivalue: false, position: 1, section_id: 7, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Field.new({id: 31, name: "Abstract", label: "Abstract", open_tag: "\\renewcommand{\\resumoname}{Abstract} \\begin{resumoumacoluna} \\begin{otherlanguage*}{english}", close_tag: "\\vspace{\\onelineskip} \\noindent \\end{otherlanguage*} \\end{resumoumacoluna} \\textual", is_multivalue: false, position: 1, section_id: 8, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Field.new({id: 32, name: "Introdução", label: "Introdução", open_tag: "\\section*{Introdução}", close_tag: "\\phantompart", is_multivalue: false, position: 1, section_id: 9, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Field.new({id: 33, name: "Conteúdo", label: "Conteúdo", open_tag: "\\phantompart", close_tag: "\\bookmarksetup{startatroot}", is_multivalue: false, position: 1, section_id: 10, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Field.new({id: 34, name: "Conclusão", label: "Conclusão", open_tag: "\\section*{Considerações finais}", close_tag: "\\postextual \\end{document}", is_multivalue: false, position: 1, section_id: 11, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Field.new({id: 3, name: "Autor", label: "Autores", open_tag: "\\author{", close_tag: "}", is_multivalue: true, position: 2, section_id: 2, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Field.new({id: 20, name: "Autores", label: "Autores (separar valores com vírgula)", open_tag: "\\autor{", close_tag: "}", is_multivalue: true, position: 2, section_id: 5, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Field.new({id: 24, name: "hypersetup", label: "hypersetup", open_tag: "\\hypersetup{pdftitle={\\@title}, pdfauthor={\\@author}, pdfsubject={\\@title}, pdfcreator={LaTeX with abnTeX2}, pdfkeywords={abnt}{latex}{abntex}{abntex2}{atigo científico}, colorlinks=true, linkcolor=blue, citecolor=blue, filecolor=magenta, urlcolor=blue, bookmarksdepth=4}", close_tag: "\\makeatother \\makeindex", is_multivalue: false, position: 2, section_id: 6, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Field.new({id: 35, name: "Fonte times", label: "mathptmx", open_tag: "\\usepackage{mathptmx", close_tag: "}", is_multivalue: false, position: 2, section_id: 4, created_at: "2017-11-07 22:50:10", updated_at: "2017-11-07 22:52:54"}).save(validate: false)
+  Field.new({id: 5, name: "Data", label: "Data", open_tag: "\\date{", close_tag: "}", is_multivalue: false, position: 3, section_id: 2, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Field.new({id: 7, name: "lmodern", label: "lmodern", open_tag: "\\usepackage{lmodern", close_tag: "}", is_multivalue: false, position: 3, section_id: 4, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:50:10"}).save(validate: false)
+  Field.new({id: 21, name: "Local", label: "Local", open_tag: "\\local{", close_tag: "}", is_multivalue: false, position: 3, section_id: 5, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Field.new({id: 25, name: "setlrmarginsandblock", label: "setlrmarginsandblock", open_tag: "\\setlrmarginsandblock{3cm}{3cm}", close_tag: "{*}", is_multivalue: false, position: 3, section_id: 6, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Field.new({id: 8, name: "fontenc", label: "fontenc", open_tag: "\\usepackage[T1]{fontenc", close_tag: "}", is_multivalue: false, position: 4, section_id: 4, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:50:10"}).save(validate: false)
+  Field.new({id: 22, name: "Data", label: "Data", open_tag: "\\data{", close_tag: "}", is_multivalue: false, position: 4, section_id: 5, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Field.new({id: 26, name: "setulmarginsandblock", label: "setulmarginsandblock", open_tag: "\\setulmarginsandblock{3cm}{3cm}", close_tag: "{*}", is_multivalue: false, position: 4, section_id: 6, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Field.new({id: 9, name: "inputenc", label: "inputenc", open_tag: "\\usepackage[utf8]{inputenc", close_tag: "}", is_multivalue: false, position: 5, section_id: 4, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:50:10"}).save(validate: false)
+  Field.new({id: 27, name: "Check and fix", label: "Check and fix", open_tag: "\\checkandfixthelayout", close_tag: "\\SingleSpacing", is_multivalue: false, position: 5, section_id: 6, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Field.new({id: 10, name: "indentfirst", label: "indentfirst", open_tag: "\\usepackage{indentfirst", close_tag: "}", is_multivalue: false, position: 6, section_id: 4, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:50:10"}).save(validate: false)
+  Field.new({id: 29, name: "length", label: "length", open_tag: "\\setlength{\\parindent}{1.3cm}", close_tag: "\\setlength{\\parskip}{0.2cm}", is_multivalue: false, position: 6, section_id: 6, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Field.new({id: 11, name: "nomencl", label: "nomencl", open_tag: "\\usepackage{nomencl", close_tag: "}", is_multivalue: false, position: 7, section_id: 4, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:50:10"}).save(validate: false)
+  Field.new({id: 12, name: "color", label: "color", open_tag: "\\usepackage{color", close_tag: "}", is_multivalue: false, position: 8, section_id: 4, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:50:10"}).save(validate: false)
+  Field.new({id: 28, name: "document", label: "document", open_tag: "\\begin{document} \\selectlanguage{brazil} \\frenchspacing ", close_tag: "\\maketitle", is_multivalue: false, position: 8, section_id: 6, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:12"}).save(validate: false)
+  Field.new({id: 13, name: "graphicx", label: "graphicx", open_tag: "\\usepackage{graphicx", close_tag: "}", is_multivalue: false, position: 9, section_id: 4, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:50:10"}).save(validate: false)
+  Field.new({id: 14, name: "microtype", label: "microtype", open_tag: "\\usepackage{microtype", close_tag: "}", is_multivalue: false, position: 10, section_id: 4, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:50:10"}).save(validate: false)
+  Field.new({id: 15, name: "lipsum", label: "lipsum", open_tag: "\\usepackage{lipsum", close_tag: "}", is_multivalue: false, position: 11, section_id: 4, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:50:10"}).save(validate: false)
+  Field.new({id: 16, name: "backref", label: "backref", open_tag: "\\usepackage[brazilian,hyperpageref]{backref", close_tag: "}", is_multivalue: false, position: 12, section_id: 4, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:50:10"}).save(validate: false)
+  Field.new({id: 17, name: "abntex2cite", label: "abntex2cite", open_tag: "\\usepackage[alf]{abntex2cite", close_tag: "}", is_multivalue: false, position: 13, section_id: 4, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:50:10"}).save(validate: false)
+  Field.new({id: 18, name: "Comandos", label: "Comandos", open_tag: "\\renewcommand{\\backrefpagesname}{Citado na(s) página(s):~} \\renewcommand{\\backref}{} \\renewcommand*{\\backrefalt}[4]{ \t\\ifcase #1  \t\tNenhuma citação no texto. \t\\or \t\tCitado na página #2. \t\\else \t\tCitado #1 vezes nas páginas #2. \t\\fi", close_tag: "}", is_multivalue: false, position: 14, section_id: 4, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:50:10"}).save(validate: false)
+  Field.new({id: 36, name: "Fonte capítulos", label: "ABNTEXchapterfont", open_tag: "\\renewcommand{\\ABNTEXchapterfont}{\\rmfamily\\bfseries", close_tag: "}", is_multivalue: false, position: 15, section_id: 4, created_at: "2017-11-07 22:51:15", updated_at: "2017-11-07 22:51:15"}).save(validate: false)
+  Paper.new({id: 2, name: "Meu artigo", hash_name: "242c56ed", template_id: 3, user_id: 1, created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 23:32:41"}).save(validate: false)
+  Content.new({id: 1, paper_id: 2, field_id: 19, content: "Artigo padrão", created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Content.new({id: 2, paper_id: 2, field_id: 20, content: "Alysson Costa, Fernando Valle", created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Content.new({id: 3, paper_id: 2, field_id: 21, content: "Curitiba", created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Content.new({id: 4, paper_id: 2, field_id: 22, content: "04 de dezembro de 2017", created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Content.new({id: 5, paper_id: 2, field_id: 30, content: "<p><strong>Lorem ipsum</strong> <em>dolor</em> <span style=\"text-decoration: underline;\">sit</span> amet, consectetur adipiscing elit. Curabitur quis dolor ornare orci porttitor fermentum. Maecenas nec cursus diam, ut rhoncus dui. Praesent vestibulum lorem non velit ultrices, convallis aliquam dolor ultrices. Nullam blandit tincidunt velit quis gravida. Pellentesque id tempus leo. Suspendisse ac est ut quam rhoncus ultricies. Fusce tempor luctus ipsum sit amet aliquam. Nunc condimentum laoreet velit non accumsan. Donec non velit a ipsum egestas vestibulum. Quisque imperdiet blandit neque, nec porttitor risus feugiat tristique. Praesent porta ex sit amet vestibulum vestibulum. Nullam vitae est ex. Nulla efficitur, arcu eget auctor porta, diam quam tempus orci, id \\textit{blandit lorem lacus id risus}.</p>", created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:54:48"}).save(validate: false)
+  Content.new({id: 6, paper_id: 2, field_id: 31, content: "<p>Nam ut massa eleifend, elementum justo vestibulum, congue nulla. Aenean congue nisi eget faucibus elementum. Nam auctor accumsan ipsum, nec aliquam sem feugiat a. Maecenas vel elit ullamcorper, pretium quam nec, condimentum enim. Aliquam ac eleifend velit, eget pulvinar mi. Etiam consectetur tempus tellus, eget bibendum augue luctus sed. Sed ut nisl fringilla, sodales odio a, mattis quam. Nulla neque mauris, sodales quis dui eget, malesuada lacinia libero. Quisque ultricies faucibus massa, quis volutpat tellus sagittis id. Integer justo velit, gravida sed porttitor at, rhoncus vitae dui.</p>", created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Content.new({id: 7, paper_id: 2, field_id: 32, content: "<p>Nunc ac ligula fringilla, interdum enim eu, interdum justo. Nulla at faucibus nulla. Morbi quis nisl lacus. Integer et ligula tincidunt, tempor elit id, imperdiet dolor. Sed non rutrum tellus, et elementum eros. Praesent tempor, lacus at malesuada feugiat, ante nisl tincidunt est, non tincidunt nisi lorem at enim. Ut fermentum fringilla leo a dictum.</p>\r\n<p>Vivamus porttitor dui urna, id posuere ipsum sollicitudin sed. In quis leo pretium, venenatis ligula vitae, posuere libero. Fusce faucibus ornare nibh vitae accumsan. Proin eu tincidunt lectus. Maecenas tellus ex, bibendum nec eros et, convallis ullamcorper lorem. Aliquam ac nisl a magna cursus vehicula in molestie erat. Etiam et auctor sapien. Vivamus vel commodo dui. Proin et urna pellentesque, fermentum nisi vel, scelerisque sem.</p>\r\n<p>Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus:</p>\r\n<ul>\r\n<li>Praesent eget erat justo.</li>\r\n<li>Aliquam vulputate efficitur lectus, sit amet suscipit odio iaculis eu.</li>\r\n<li>Nulla facilisi.</li>\r\n<li>Sed erat nibh, lobortis vitae tempor egestas, congue sit amet nisi.</li>\r\n<li>Cras sodales eros massa, eu vulputate elit egestas a.</li>\r\n<li>Interdum et malesuada fames ac ante ipsum primis in faucibus.</li>\r\n<li>Donec ut leo maximus eros pellentesque pellentesque.</li>\r\n</ul>\r\n<p>Etiam a arcu suscipit, sodales sem ac, lobortis ante:</p>\r\n<ol>\r\n<li>Aenean lacinia felis eu diam vulputate eleifend eu non nisl.</li>\r\n<li>Nam elementum facilisis urna quis dignissim.</li>\r\n<li>Cras et pharetra quam.</li>\r\n<li>Cras vulputate, purus et lacinia egestas, tellus tortor tincidunt turpis, non lobortis urna augue et ipsum.</li>\r\n<li>In hac habitasse platea dictumst.</li>\r\n<li>Donec blandit metus ac euismod eleifend.</li>\r\n</ol>\r\n<p>Praesent nunc nibh, pretium quis pellentesque eget, pretium eu nisi. Donec faucibus a odio nec tristique. Suspendisse magna sem, lacinia quis vestibulum nec, consectetur ut dui. Proin ante neque, consectetur sit amet facilisis non, viverra vel ligula. Fusce a urna sapien. Phasellus bibendum turpis sed faucibus facilisis. Nulla id fermentum orci. Integer a ex nec odio efficitur lobortis a feugiat risus. Vestibulum sollicitudin diam vitae quam eleifend, quis dictum quam imperdiet.</p>", created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
+  Content.new({id: 8, paper_id: 2, field_id: 33, content: "<h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>\r\n<p>Curabitur quis dolor ornare orci porttitor fermentum. Maecenas nec cursus diam, ut rhoncus dui. Praesent vestibulum lorem non velit ultrices, convallis aliquam dolor ultrices. Nullam blandit tincidunt velit quis gravida. Pellentesque id tempus leo. Suspendisse ac est ut quam rhoncus ultricies. Fusce tempor luctus ipsum sit amet aliquam. Nunc condimentum laoreet velit non accumsan. Donec non velit a ipsum egestas vestibulum. Quisque imperdiet blandit neque, nec porttitor risus feugiat tristique. Praesent porta ex sit amet vestibulum vestibulum. Nullam vitae est ex. Nulla efficitur, arcu eget auctor porta, diam quam tempus orci, id blandit lorem lacus id risus.</p>\r\n<p>Nam ut massa eleifend, elementum justo vestibulum, congue nulla. Aenean congue nisi eget faucibus elementum. Nam auctor accumsan ipsum, nec aliquam sem feugiat a. Maecenas vel elit ullamcorper, pretium quam nec, condimentum enim. Aliquam ac eleifend velit, eget pulvinar mi. Etiam consectetur tempus tellus, eget bibendum augue luctus sed. Sed ut nisl fringilla, sodales odio a, mattis quam. Nulla neque mauris, sodales quis dui eget, malesuada lacinia libero. Quisque ultricies faucibus massa, quis volutpat tellus sagittis id. Integer justo velit, gravida sed porttitor at, rhoncus vitae dui.</p>\r\n<h2>Nunc ac ligula fringilla, interdum enim eu, interdum justo.</h2>\r\n<p>Nulla at faucibus nulla. Morbi quis nisl lacus. Integer et ligula tincidunt, tempor elit id, imperdiet dolor. Sed non rutrum tellus, et elementum eros. Praesent tempor, lacus at malesuada feugiat, ante nisl tincidunt est, non tincidunt nisi lorem at enim. Ut fermentum fringilla leo a dictum. Vivamus porttitor dui urna, id posuere ipsum sollicitudin sed. In quis leo pretium, venenatis ligula vitae, posuere libero. Fusce faucibus ornare nibh vitae accumsan. Proin eu tincidunt lectus. Maecenas tellus ex, bibendum nec eros et, convallis ullamcorper lorem. Aliquam ac nisl a magna cursus vehicula in molestie erat. Etiam et auctor sapien. Vivamus vel commodo dui. Proin et urna pellentesque, fermentum nisi vel, scelerisque sem.</p>\r\n<pre style=\"background: #66b7ff;\">\\begin{figure}[htb]<br />\\immediate \\write18{wget https://www.grancursosonline.com.br/upload/projeto/ufpr-universidade-federal-do-parana.png -O ufpr.jpg}<br />\\caption{Imagem no trabalho}<br />\\begin{center}<br />\\includegraphics[width=10cm]{ufpr}<br />\\end{center}<br />\\legend{Fonte: internet}<br />\\end{figure}</pre>\r\n<p>Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent eget erat justo. Aliquam vulputate efficitur lectus, sit amet suscipit odio iaculis eu. Nulla facilisi. Sed erat nibh, lobortis vitae tempor egestas, congue sit amet nisi. Cras sodales eros massa, eu vulputate elit egestas a. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec ut leo maximus eros pellentesque pellentesque.</p>\r\n<h3>Etiam a arcu suscipit, sodales sem ac, lobortis ante.</h3>\r\n<p>Aenean lacinia felis eu diam vulputate eleifend eu non nisl. Nam elementum facilisis urna quis dignissim. Cras et pharetra quam. Cras vulputate, purus et lacinia egestas, tellus tortor tincidunt turpis, non lobortis urna augue et ipsum. In hac habitasse platea dictumst. Donec blandit metus ac euismod eleifend. Praesent nunc nibh, pretium quis pellentesque eget, pretium eu nisi. Donec faucibus a odio nec tristique. Suspendisse magna sem, lacinia quis vestibulum nec, consectetur ut dui. Proin ante neque, consectetur sit amet facilisis non, viverra vel ligula. Fusce a urna sapien. Phasellus bibendum turpis sed faucibus facilisis. Nulla id fermentum orci. Integer a ex nec odio efficitur lobortis a feugiat risus. Vestibulum sollicitudin diam vitae quam eleifend, quis dictum quam imperdiet.</p>\r\n<p>Duis non mauris erat. Duis neque sapien, porttitor a maximus et, consequat sed est. Aenean eget turpis nec justo placerat luctus. Mauris eget finibus diam, ut finibus justo. Nullam volutpat nulla vitae porta elementum. Nulla lobortis molestie risus in mollis. Donec ligula erat, sollicitudin in nisl volutpat, gravida posuere est. Nullam rutrum vestibulum mauris, non mattis neque. Sed placerat eros nec tincidunt vestibulum. Nunc interdum vehicula porttitor. Duis in finibus lorem, a faucibus neque. Curabitur mollis risus in orci vestibulum consectetur. In sed consectetur turpis, eu semper justo. Suspendisse sed congue eros.</p>\r\n<h3>Nunc faucibus lectus scelerisque quam maximus, vitae cursus justo molestie.</h3>\r\n<p>Fusce a pellentesque mauris. Phasellus efficitur condimentum velit, vitae facilisis diam efficitur vitae. Praesent mattis nibh lorem, eu commodo mauris cursus ut. Praesent finibus orci eu malesuada luctus. Vivamus ut venenatis orci. Quisque eleifend tempus mi eu pharetra.</p>\r\n<p>Mauris sodales arcu sit amet elit volutpat auctor. Integer vel leo metus. Aliquam iaculis aliquam facilisis. Ut vel nunc vel augue iaculis accumsan eget at mi. Ut imperdiet lacus nec accumsan fringilla. Cras nec viverra justo. Nulla facilisi. Integer nec tincidunt ipsum, varius pulvinar ex. Curabitur aliquet nisl nec tortor facilisis iaculis. Etiam bibendum libero vitae felis ultricies pharetra.</p>\r\n<h4>Phasellus molestie convallis quam, in maximus tortor sagittis in.</h4>\r\n<p>Vestibulum pharetra, lacus viverra vulputate laoreet, dolor nisl faucibus dui, ut lobortis diam ante eget dolor. Cras et felis varius nisl pretium rutrum in quis erat. Sed ac nunc eros. Integer in mattis tellus, et congue nisl. Sed mattis volutpat augue, non ullamcorper ex viverra sit amet. Pellentesque auctor arcu quis dui convallis egestas. Nullam dictum massa nec aliquet consequat. Pellentesque cursus in felis in porta. Etiam ultrices odio sit amet tortor tincidunt euismod. Sed nibh augue, convallis sed metus interdum, pulvinar aliquam enim. Mauris a diam tempus, malesuada nisi non, malesuada dui. Mauris mattis lectus blandit, vulputate nunc et, lobortis libero. Nullam faucibus feugiat elementum. Nam ac lorem dolor. In vulputate sit amet ipsum et dapibus.</p>", created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 23:29:50"}).save(validate: false)
+  Content.new({id: 9, paper_id: 2, field_id: 34, content: "<p>Phasellus ex nunc, sagittis sed arcu mollis, pulvinar malesuada ex. Sed nisi ante, blandit eget eros id, interdum dapibus eros. Aenean at efficitur metus. Sed orci nibh, tincidunt sed imperdiet ut, pharetra sit amet mauris. Ut vel lectus finibus, auctor odio quis, condimentum metus. Nullam in fermentum lectus. Proin fermentum dictum felis, ac molestie neque pellentesque vitae. Donec posuere enim sit amet magna tempus dignissim. Ut ante nunc, vulputate nec neque non, tempor eleifend justo. Fusce pretium posuere sapien, eu vestibulum mi convallis tempus. Sed dignissim massa a nunc auctor sagittis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque euismod dignissim diam eget bibendum.</p>", created_at: "2017-11-07 22:22:11", updated_at: "2017-11-07 22:22:11"}).save(validate: false)
