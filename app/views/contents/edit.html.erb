@@ -3,7 +3,7 @@
   <% @paper.template.sections.each do |section| %>
 	<p><%= link_to_if section.is_editable, "#{section.name}", "/trabalho/#{@paper.hash_name}/#{section.id}" %></p>
   <% end %>
-<div id="capitulos">capitulos listados</div>
+
 </div>
 
 <div class="col s10 right">
@@ -23,10 +23,3 @@
 <% end %>
 
 </div>
-
-<script>
-	function teste(a){
-		console.log(a);
-		document.getElementById("capitulos").innerHTML = a;
-	}
-</script>
