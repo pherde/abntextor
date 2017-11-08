@@ -21,6 +21,8 @@
 
 pt:
   hello: "Hello world"
+  unauthorized:
+    default: "Você não tem autorização para acessar essa página."
   will_paginate:
     previous_label: "Anterior"
     next_label: "Próxima"

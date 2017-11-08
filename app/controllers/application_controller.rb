@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
   before_action :configure_devise_params, if: :devise_controller?
   protect_from_forgery with: :exception
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, :alert => exception.message
+  end
+
   private
   def set_referer
   	session[:referer] = request.referer
