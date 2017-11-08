@@ -20,5 +20,8 @@ module App
 
     I18n.available_locales = [:pt]
     I18n.default_locale = :pt
+
+    hash = {"<br />" => "", '<pre style="background: #66b7ff;">' => ""}
+    Html2latex.add hash
   end
 end
