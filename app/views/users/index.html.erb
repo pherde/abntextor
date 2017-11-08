@@ -24,7 +24,7 @@
         <td><span class="btn-floating <%= user.is_admin ? 'green' : 'red' %>"></span></td>
         <td><%= link_to "<i class='material-icons'>more</i>".html_safe, user, class: "btn-floating" %></td>
         <td><%= link_to "<i class='material-icons'>edit</i>".html_safe, edit_user_path(user), class: "btn-floating" %></td>
-        <td><%= link_to "<i class='material-icons'>edit</i>".html_safe, user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-floating red" %></td>
+        <td><%= link_to "<i class='material-icons'>delete</i>".html_safe, user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-floating red" %></td>
       </tr>
     <% end %>
   </tbody>
