@@ -1,7 +1,11 @@
 <div class="col s2 left">
 
   <% @paper.template.sections.each do |section| %>
-	<p><%= link_to_if section.is_editable, "#{section.name}", "/trabalho/#{@paper.hash_name}/#{section.id}" %></p>
+      <% if section.is_editable? %>
+	      <p>
+          <%= link_to_unless_current "#{section.name}", "/trabalho/#{@paper.hash_name}/#{section.id}", 'data-no-turbolink' => true %>
+        </p><hr />
+      <% end %>
   <% end %>
 
 </div>
@@ -21,5 +25,4 @@
     <%= link_to "Voltar", papers_path, class: "btn red" %>
   </div>
 <% end %>
-
 </div>
