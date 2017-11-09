@@ -12,11 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
 //= require tinymce-jquery
-//= require materialize-sprockets
+//= require materialize
 
-$(document).on('turbolinks:load' ,function() {
+$(document).ready(function() {
 	$('select').material_select();
 });

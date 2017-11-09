@@ -3,7 +3,7 @@
   <% @paper.template.sections.each do |section| %>
       <% if section.is_editable? %>
 	      <p>
-          <%= link_to_unless_current "#{section.name}", "/trabalho/#{@paper.hash_name}/#{section.id}", 'data-no-turbolink' => true %>
+          <%= link_to_unless_current "#{section.name}", "/trabalho/#{@paper.hash_name}/#{section.id}" %>
         </p><hr />
       <% end %>
   <% end %>
