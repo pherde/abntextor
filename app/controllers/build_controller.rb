@@ -22,8 +22,12 @@ class BuildController < ApplicationController
       f.write(@tex)
     end
     system("pdflatex --interaction=nonstopmode -output-directory=public/pdf --shell-escape #{arquivo}")
-     @paper.touch # Update paper
-     redirect_to "/pdf/#{@paper.hash_name}.pdf"
+     @paper.touch
+     if File.exists? "public/pdf/#{@paper.hash_name}.pdf"
+      redirect_to "/pdf/#{@paper.hash_name}.pdf"
+    else
+      redirect_to root_path, alert: 'Não foi possível gerar o PDF desse trabalho.'
+    end
      authorize!(:build, @paper)
   end
 end
