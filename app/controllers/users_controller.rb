@@ -48,7 +48,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to session.delete(:referer), notice: 'Usuário foi atualizado com sucesso.' }
+        format.html { redirect_to current_user.admin? ? @user : root_path, notice: 'Usuário foi atualizado com sucesso.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -75,6 +75,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :alias, :college, :is_active, :is_admin)
+      params.require(:user).permit(:name, :alias, :email, :college, :is_active, :is_admin)
     end
 end

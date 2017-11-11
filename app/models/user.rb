@@ -1,5 +1,9 @@
 class User < ApplicationRecord
   has_many :papers
+
+  #Gravatar
+  include Gravtastic
+  gravtastic
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -13,8 +17,8 @@ class User < ApplicationRecord
   validates :alias, uniqueness: { message: "Esse apelido já foi cadastrado. Por gentileza, escolha outro" }
   validates :email, presence: { message: "O campo E-mail é obrigatório" }
   validates :email, uniqueness: {message: "Esse e-mail ja foi cadastrado. Recupere sua senha clicando <a href='#'>aqui<a/>".html_safe }
-  validates :password, presence: { message: "O campo Senha é obrigatório" }
-  validates :password_confirmation, presence: { message: "O campo de confirmação de senha é obrigatório" }
+  #validates :password, presence: { message: "O campo Senha é obrigatório" }
+  #validates :password_confirmation, presence: { message: "O campo de confirmação de senha é obrigatório" }
 
   def admin?
   	self.is_admin

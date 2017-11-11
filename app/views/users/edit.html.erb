@@ -1,17 +1,17 @@
 <h1>Editar usuário</h1>
 
 <div class="col s3 left">
-	<div class="row col s12">
-		<i class="large material-icons">account_circle</i>
+	<div class="row col s12 center">
+		<%= image_tag @user.gravatar_url %>
 		<table>
 			<tr>
-				<td>Usuário desde: </td>
+				<td>Usuário desde: <%= @user.created_at.strftime("%d/%m/%Y") %> </td>
 			</tr>
 			<tr>
-				<td>Quantidade de trabalhos: </td>
+				<td>Quantidade de trabalhos: <%= @user.papers.size %></td>
 			</tr>
 		</table>
-		<%= link_to "Alterar senha", "#" %>
+		<%= link_to "Alterar senha", edit_user_registration_path %>
 	</div>
 </div>
 <div class="col s9 right">

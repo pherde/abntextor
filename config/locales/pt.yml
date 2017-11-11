@@ -39,3 +39,5 @@ pt:
               too_short: "A senha deve ter no mínimo 6 caracteres"
             password_confirmation:
               confirmation: "Senha e confirmação de senha não são iguais"
+            current_password:
+              blank: "Informe sua senha atual"
