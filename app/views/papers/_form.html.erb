@@ -1,37 +1,40 @@
-<%= form_for(paper) do |f| %>
-  <% if paper.errors.any? %>
-    <div id="error_explanation">
-      <ul>
-      <% paper.errors.each do |attr, message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div class="row">
+  
+  <%= form_for(paper) do |f| %>
+    <% if paper.errors.any? %>
+      <div id="error_explanation">
+        <ul>
+        <% paper.errors.each do |attr, message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="input-field col s6">
+      <%= f.text_field :name %>
+      <%= f.label :name, "Nome do trabalho" %>
+    </div>
+
+    <div class="input-field col s6">
+      
+      <%= f.select(:template_id, paper.new_record? ? @templates.map{ |t| ["#{t.name}", t.id] } : [["#{paper.template.name}", paper.template.id]])  %>
+      
+      <%= f.label :template_id, "Template" %>
+    </div>
+
+    <div class="field">
+      <%= f.hidden_field :user_id, value: current_user.id, readonly: "readonly" %>
+    </div>
+
+    <div class="actions col s12 right">
+      <%= f.submit paper.new_record? ? "Criar trabalho" : "Alterar trabalho", class: "btn" %>
+      <%= link_to 'Voltar', papers_path, class: "btn red" %>
     </div>
   <% end %>
+</div>
 
-  <div class="input-field col s6">
-    <%= f.text_field :name %>
-    <%= f.label :name, "Nome do trabalho" %>
-  </div>
-
-  <div class="input-field col s6">
-    
-    <%= f.select(:template_id, paper.new_record? ? @templates.map{ |t| ["#{t.name}", t.id] } : [["#{paper.template.name}", paper.template.id]])  %>
-    
-    <%= f.label :template_id, "Template" %>
-  </div>
-
-  <div class="field">
-    <%= f.hidden_field :user_id, value: current_user.id, readonly: "readonly" %>
-  </div>
-
-  <div class="actions col s12 right">
-    <%= f.submit paper.new_record? ? "Criar trabalho" : "Alterar trabalho", class: "btn" %>
-    <%= link_to 'Voltar', papers_path, class: "btn red" %>
-  </div>
-<% end %>
-
-  <div class="row">
+  <div class="row section">
     <h5>Descrição do template</h5>
     <div id='template_description'>
     
@@ -40,7 +43,7 @@
 
 
 <%= javascript_tag do %>
-$(document).on('turbolinks:load' ,function() {
+$(document).ready(function() {
 	var templates = [
   <% if @templates %>
 	<% @templates.each do |index| %>
