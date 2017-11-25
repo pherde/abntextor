@@ -1,28 +1,28 @@
+<%= form_tag(controller: "contents", action: "update", method: "post") do %>
 <div class="col s2 left">
 
   <% @paper.template.sections.each do |section| %>
       <% if section.is_editable? %>
-	      <p>
+        <p>
           <%= link_to_unless_current "#{section.name}", "/trabalho/#{@paper.hash_name}/#{section.id}" %>
         </p><hr />
       <% end %>
   <% end %>
+  <div class="actions">
+    <%= button_tag("Salvar",  {class: "btn col s12", id: "botao_salvar_editor"}) %>
+    <%= link_to "Voltar", "/trabalhos", class: "btn col s12 red" %>
+  </div>
 
 </div>
 
 <div class="col s10 right">
-<%= form_tag(controller: "contents", action: "update", method: "post") do %>
   <% @contents.each do |content| %>
-	<% if content.field.section.is_wysiwyg %>
-		<%= render "edit_editor", content: content %>
- 	<% else %>
-		<%= render "edit_fields", content: content %>
-	<% end %>
+  <% if content.field.section.is_wysiwyg %>
+    <%= render "edit_editor", content: content %>
+  <% else %>
+    <%= render "edit_fields", content: content %>
+  <% end %>
   <% end %>
 
-  <div class="actions">
-    <%= button_tag("Salvar",  {class: "btn"}) %>
-    <%= link_to "Voltar", papers_path, class: "btn red" %>
-  </div>
-<% end %>
 </div>
+<% end %>

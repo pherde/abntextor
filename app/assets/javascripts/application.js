@@ -18,4 +18,15 @@
 
 $(document).ready(function() {
 	$('select').material_select();
+	$('.tooltip').tooltip();
+
+	//$('button#botao_salvar_editor').attr('disabled','disabled');
+	$('input, textarea').on('input', function(){
+		//$('button#botao_salvar_editor').removeAttr('disabled');
+	});
+	$('button#botao_salvar_editor').click(function(){
+		//$('button#botao_salvar_editor').attr('disabled','disabled');
+		Materialize.toast('Salvo com sucesso!', 4000)
+	});
+
 });
