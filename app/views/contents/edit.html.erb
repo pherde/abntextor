@@ -1,11 +1,10 @@
 <%= form_tag(controller: "contents", action: "update", method: "post") do %>
 <div class="col s2 left">
-
   <% @paper.template.sections.each do |section| %>
       <% if section.is_editable? %>
-        <p>
+        <p class="separator">
           <%= link_to_unless_current "#{section.name}", "/trabalho/#{@paper.hash_name}/#{section.id}" %>
-        </p><hr />
+        </p>
       <% end %>
   <% end %>
   <div class="actions">
