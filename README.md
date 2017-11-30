@@ -1,4 +1,4 @@
-# AbnTeXtor
+![abntextor](https://raw.githubusercontent.com/pherde/abntextor/master/app/assets/images/logo.png)
 
 [![Rails-Verison](https://img.shields.io/badge/Rails-5.0.1-red.svg)](http://rubyonrails.org/)
 [![Ruby-Verison](https://img.shields.io/badge/Ruby-2.3.3-orange.svg)](http://rubyonrails.org/)
