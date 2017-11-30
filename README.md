@@ -1,58 +1,75 @@
-# README
+# AbnTeXtor
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[![Rails-Verison](https://img.shields.io/badge/Rails-5.0.1-red.svg)](http://rubyonrails.org/)
+[![Ruby-Verison](https://img.shields.io/badge/Ruby-2.3.3-orange.svg)](http://rubyonrails.org/)
+[![Gem-Verison](https://img.shields.io/badge/Gem-2.5.2-yellow.svg)](http://rubyonrails.org/)
+[![Texlive-Verison](https://img.shields.io/badge/Texlive-3.14-green.svg)](http://rubyonrails.org/)
+[![Git-Verison](https://img.shields.io/badge/Git-2.7.4-blue.svg)](http://rubyonrails.org/)
 
-Things you may want to cover:
+O AbnTeXtor é um editor de texto para trabalhos acadêmicos. A aplicação é feita basicamente com Ruby On Rails e Latex. 
 
-* Ruby version
+Na aplicação existem alguns templates de acordo com as regras da ABNT para trabalhos acadêmicos. Basta o usuário criar um trabalho e escrevê-lo. Todo o trabalho de formatação, dentro das regras, será feita pelo AbnTeXtor.
 
-* System dependencies
+## Funcionalidades
 
-* Configuration
+* Sistema completo de controle de usuários
+* Usuários admin e comum
+* Templates prontos para utilização
+* Possibilidade de criação, edição e exclusão de templates e trabalhos
+* Usuários podem criar quantos trabalhos quiserem
+* Separação das seções do trabalho atravé de menus
+* Editor de textos de fácil utilização para escrever conteúdo
+* Trabalho gerado em PDF com compilação feita em Latex
 
-* Database creation
+## Dependências
 
-* Database initialization
+* Ruby 2.3.3
+* Gem 2.5.2
+* Ruby On Rails 5.0.1
+* Texlive 3.14
+* MySQL 14.14
+* Git 2.7.4
 
-* How to run the test suite
+## Instalação
 
-* Services (job queues, cache servers, search engines, etc.)
+### Vagrant
 
-* Deployment instructions
+Está disponível uma máquinha virtual feita no Vagrant para facilitar a instalação da aplicação.
 
-* ...
+Para utilizar essa máquina é importante ter o [Virtualbox](https://www.virtualbox.org/) a o [Vagrant](https://www.vagrantup.com/) instalados. Com essa máquina as dependências relacionadas acima estão sanadas. Para instalar a máquina inicialmente faça:
 
-
-Vagrantfile
 ```
-# -*- mode: ruby -*-
-# vi: set ft=ruby :
-
-VAGRANTFILE_API_VERSION = "2"
-REQUIRED_PLUGINS        = %w(vagrant-vbguest)
-
-plugins_to_install = REQUIRED_PLUGINS.select { |plugin| not Vagrant.has_plugin? plugin }
-if not plugins_to_install.empty?
-  puts "Installing required plugins: #{plugins_to_install.join(' ')}"
-  if system "vagrant plugin install #{plugins_to_install.join(' ')}"
-    exec "vagrant #{ARGV.join(' ')}"
-  else
-    abort "Installation of one or more plugins has failed. Aborting. Please read the Bike Index README."
-  end
-end
-
-Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "abntex"
-
-  # Configure the virtual machine to use 1.5GB of RAM
-  config.vm.provider :virtualbox do |vb|
-    vb.customize ["modifyvm", :id, "--memory", "1536"]
-  end
-
-  # Forward the Rails server default port to the host
-  config.vm.network :forwarded_port, guest: 3000, host: 3000
-  config.vm.synced_folder ".", "/vagrant", owner: "vagrant", group: "vagrant"
-
-end
+$ vagrant init pherde/railstex --box-version 0.0.1
+$ vagrant up
 ```
+
+Porém, ainda teremos que redirecionar a porta padrão do Rails. Abra o arquivo Vagrantfile que foi gerado depois do init e insira a seguinte linha nele:
+
+```
+config.vm.network "forwarded_port", guest: 3000, host: 3000
+```
+
+Na sequência para acessar a máquina basta digitar o comando:
+
+```
+$ vagrant ssh
+```
+
+### Instalando o AbnTeXtor
+
+A receita de bolo para instalar o AbnTeXtor na máquina virtual:
+
+```
+$ git clone https://github.com/pherde/abntextor.git
+$ cd abntextor
+$ bundle install
+$ rails db:create
+$ rails db:migrate
+$ rails db:seed
+$ rails s
+```
+
+Para acessar basta digitar o endereço [localhost:3000](localhost:300) no navegador
+
+**Login**: admin@admin.com
+**Senha**: admin
