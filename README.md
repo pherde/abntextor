@@ -40,16 +40,21 @@ Para utilizar essa máquina é importante ter o [Virtualbox](https://www.virtual
 
 ```
 $ vagrant init pherde/railstex --box-version 0.0.1
-$ vagrant up
 ```
 
-Porém, ainda teremos que redirecionar a porta padrão do Rails. Abra o arquivo Vagrantfile que foi gerado depois do init e insira a seguinte linha nele:
+Na sequência teremos que redirecionar a porta padrão do Rails. Abra o arquivo Vagrantfile que foi gerado depois do init e insira a seguinte linha nele:
 
 ```
 config.vm.network "forwarded_port", guest: 3000, host: 3000
 ```
 
-Na sequência para acessar a máquina basta digitar o comando:
+Para subir a máquina então:
+
+```
+$ vagrant up
+```
+
+Na sequência para acessá-la basta digitar o comando:
 
 ```
 $ vagrant ssh
