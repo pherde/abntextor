@@ -4,5 +4,8 @@ public/pdf/*.aux
 public/pdf/*.idx
 public/pdf/*.log
 public/pdf/*.pdf
-public/pdf/*.tex
+public/pdf/*.brf
+public/pdf/*.lof
+public/pdf/*.lot
+public/pdf/*.loc
 .idea/

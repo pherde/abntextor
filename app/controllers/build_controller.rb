@@ -13,7 +13,7 @@ class BuildController < ApplicationController
         elsif field.section.is_editable
           @tex = "#{@tex} #{field.open_tag} #{content.content} #{field.close_tag} "
         else
-          @tex = "#{@tex} #{field.open_tag} #{field.close_tag} "
+          @tex = "#{@tex} #{field.open_tag}#{field.close_tag} "
         end
       end
     end
