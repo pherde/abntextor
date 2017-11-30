@@ -8,4 +8,6 @@ public/pdf/*.brf
 public/pdf/*.lof
 public/pdf/*.lot
 public/pdf/*.loc
+public/pdf/*.tex
+public/pdf/*.toc
 .idea/
