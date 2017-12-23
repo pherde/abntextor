@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171105202422) do
+ActiveRecord::Schema.define(version: 20171203151826) do
 
   create_table "contents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "paper_id"
     t.integer  "field_id"
-    t.text     "content",    limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.text     "content",    limit: 4294967295
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.index ["field_id"], name: "index_contents_on_field_id", using: :btree
     t.index ["paper_id"], name: "index_contents_on_paper_id", using: :btree
   end

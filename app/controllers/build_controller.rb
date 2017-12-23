@@ -5,6 +5,9 @@ class BuildController < ApplicationController
     @paper.template.sections.each do |section|
       section.fields.each do |field|
         content = Content.where("paper_id = #{@paper.id} and field_id = #{field.id}").first
+
+        content ||= Content.new
+        content.content ||= ""
         
         if field.section.is_wysiwyg
           @tex = "#{@tex} #{field.open_tag} #{Html2latex.traduzir(content.content)} #{field.close_tag} "

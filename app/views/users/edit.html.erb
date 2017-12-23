@@ -2,13 +2,16 @@
 
 <div class="col s3 left">
 	<div class="row col s12 center">
-		<%= image_tag @user.gravatar_url %>
+		<%= image_tag @user.gravatar_url , size: 120 %>
 		<table>
 			<tr>
-				<td>Usuário desde: <%= @user.created_at.strftime("%d/%m/%Y") %> </td>
+				<td class="center"> <%= link_to "Alterar foto", "https://pt.gravatar.com/", target: "blank", class: "btn tooltip", "data-position" => "right", "data-tooltip" => "Usamos o serviço Gravatar. Para saber mais, clique no botão." %> </td>
 			</tr>
 			<tr>
-				<td>Quantidade de trabalhos: <%= @user.papers.size %></td>
+				<td class="center">Usuário desde: <%= @user.created_at.strftime("%d/%m/%Y") %> </td>
+			</tr>
+			<tr>
+				<td class="center">Quantidade de trabalhos: <%= @user.papers.size %></td>
 			</tr>
 		</table>
 		<%= link_to "Alterar senha", edit_user_registration_path %>
