@@ -25,7 +25,9 @@ module App
       "<br />" => "", 
       '<pre style="background: #66b7ff;">' => "",
       "ldquo;" => "\"" ,
-      "rdquo;" => "\""
+      "rdquo;" => "\"",
+      "<blockquote>" => "\\begin{quotation}",
+      "</blockquote>" => "\\end{quotation}"
     }
     Html2latex.add hash
   end
