@@ -39,10 +39,10 @@ Está disponível uma máquinha virtual feita no Vagrant para facilitar a instal
 Para utilizar essa máquina é importante ter o [Virtualbox](https://www.virtualbox.org/) a o [Vagrant](https://www.vagrantup.com/) instalados. Com essa máquina as dependências relacionadas acima estão sanadas. Para instalar a máquina inicialmente faça:
 
 ```
-$ vagrant init pherde/railstex --box-version 0.0.1
+$ vagrant init pherde/railstex
 ```
 
-Na sequência teremos que redirecionar a porta padrão do Rails. Abra o arquivo Vagrantfile que foi gerado depois do init e insira a seguinte linha nele:
+A versão 0.0.2 ou superior faz o redirecionamento da porta 3000 automaticamente. Para alterar essa configuração (ou caso use a versão 0.0.1), insira a seguinte linha ao Vagrantfile:
 
 ```
 config.vm.network "forwarded_port", guest: 3000, host: 3000
