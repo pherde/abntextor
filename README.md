@@ -32,47 +32,15 @@ Na aplicação existem alguns templates de acordo com as regras da ABNT para tra
 
 ## Instalação
 
-### Vagrant
+### Docker
 
-Está disponível uma máquinha virtual feita no Vagrant para facilitar a instalação da aplicação.
-
-Para utilizar essa máquina é importante ter o [Virtualbox](https://www.virtualbox.org/) a o [Vagrant](https://www.vagrantup.com/) instalados. Com essa máquina as dependências relacionadas acima estão sanadas. Para instalar a máquina inicialmente faça:
+Clone o repositório, navegue até a pasta raiz da aplicação e execute o comando a seguir.
 
 ```
-$ vagrant init pherde/railstex
+$ MYSQL_USER=abntextor_user MYSQL_PASSWORD=abntextor_password MYSQL_DATABASE=abntextor_database docker-compose up --build
 ```
 
-A versão 0.0.2 ou superior faz o redirecionamento da porta 3000 automaticamente. Para alterar essa configuração (ou caso use a versão 0.0.1), insira a seguinte linha ao Vagrantfile:
-
-```
-config.vm.network "forwarded_port", guest: 3000, host: 3000
-```
-
-Para subir a máquina então:
-
-```
-$ vagrant up
-```
-
-Na sequência para acessá-la basta digitar o comando:
-
-```
-$ vagrant ssh
-```
-
-### Instalando o AbnTeXtor
-
-A receita de bolo para instalar o AbnTeXtor na máquina virtual:
-
-```
-$ git clone https://github.com/pherde/abntextor.git
-$ cd abntextor
-$ bundle install
-$ rails db:create
-$ rails db:migrate
-$ rails db:seed
-$ rails s
-```
+Para executar a migration e seed (opcional) uma vez que o container MySQL esteja disponível (pode demorar alguns segundos), execute `docker exec abntextor rails db:migrate db:seed`.
 
 Para acessar basta digitar o endereço [localhost:3000](localhost:300) no navegador
 

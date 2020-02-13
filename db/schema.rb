@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20171203151826) do
 
-  create_table "contents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "contents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "paper_id"
     t.integer  "field_id"
     t.text     "content",    limit: 4294967295
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20171203151826) do
     t.index ["paper_id"], name: "index_contents_on_paper_id", using: :btree
   end
 
-  create_table "fields", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "fields", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "name"
     t.string   "label"
     t.text     "open_tag",      limit: 65535
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20171203151826) do
     t.index ["section_id"], name: "index_fields_on_section_id", using: :btree
   end
 
-  create_table "papers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "papers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "name"
     t.string   "hash_name"
     t.integer  "template_id"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20171203151826) do
     t.index ["user_id"], name: "index_papers_on_user_id", using: :btree
   end
 
-  create_table "sections", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "sections", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "name"
     t.integer  "template_id"
     t.boolean  "is_editable"
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20171203151826) do
     t.index ["template_id"], name: "index_sections_on_template_id", using: :btree
   end
 
-  create_table "templates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "templates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "name"
     t.string   "description"
     t.boolean  "is_active"
@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 20171203151826) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "name"
     t.string   "alias"
     t.string   "college"
